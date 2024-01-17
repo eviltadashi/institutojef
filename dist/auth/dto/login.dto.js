@@ -11,14 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginDto = void 0;
 const class_validator_1 = require("class-validator");
-const uniqueEmail_validator_1 = require("../../alunos/validacao/uniqueEmail.validator");
 class LoginDto {
 }
 exports.LoginDto = LoginDto;
 __decorate([
     (0, class_validator_1.IsEmail)(undefined, { message: 'email invalido, verifique o campo.' }),
     (0, class_validator_1.IsOptional)(),
-    (0, uniqueEmail_validator_1.uniqueEmail)({ message: 'E-mail já cadastrado' }),
     __metadata("design:type", String)
 ], LoginDto.prototype, "email", void 0);
 __decorate([
