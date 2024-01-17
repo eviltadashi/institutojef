@@ -28,8 +28,11 @@ let alunosRepository = class alunosRepository {
         });
     }
     async getAlunoEmail(email) {
+        console.log('passou poelo alunos.repository');
         return prisma.alunos.findUnique({
-            where: { email },
+            where: {
+                email: email,
+            }
         });
     }
     async atualizar(id, dadosAlunoUpdate) {

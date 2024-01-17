@@ -6,6 +6,9 @@ import { v4 as uuid } from 'uuid';
 import { listaAlunoDTO } from "./dto/listaAlunoDTO";
 import { atualizaAlunoDTO } from "./dto/atualizaAlunoDTO";
 import { alunos } from "prisma/src/generated/client";
+import * as bcrypt from 'bcrypt';
+import { AuthGuard } from '@nestjs/passport';
+
 
 @Controller('/alunos')
 
@@ -15,24 +18,25 @@ export class alunosController{
     @Post()
     async createAluno(@Body() dadosAluno: CriarAlunoDTO){
         const alunoEntity = new AlunoEntity()
-        alunoEntity.email = dadosAluno.email;
-        alunoEntity.senha = dadosAluno.senha;
-        alunoEntity.nome = dadosAluno.nome;
         alunoEntity.id = uuid();
+        alunoEntity.nome = dadosAluno.nome;
+        alunoEntity.email = dadosAluno.email;
+        alunoEntity.senha = await bcrypt.hash(dadosAluno.senha,10);
 
         this.alunosRepository.create(alunoEntity)
         return {
             "success":true,
             "message":"Aluno criado com sucesso", 
             "alunos": new listaAlunoDTO(
-                alunoEntity.email,
+                alunoEntity.id,
                 alunoEntity.nome,
-                alunoEntity.id
+                alunoEntity.email,
             )
         };
     }
 
     @Get()
+    @UseGuards(AuthGuard())
     async listaAlunos(){
         const retAlunos = await this.alunosRepository.listar();
         return retAlunos;
@@ -55,8 +59,23 @@ export class alunosController{
 
     @Put('/:id')
     async atualizaAluno(@Param('id') id: string, @Body() dadosAlunoUpdate:atualizaAlunoDTO){
-        const retAtualizacaoAluno = await this.alunosRepository.atualizar(id, dadosAlunoUpdate);
-        return retAtualizacaoAluno;       
+    
+        const alunoEntity = new AlunoEntity()
+        alunoEntity.id = uuid();
+        alunoEntity.nome = dadosAlunoUpdate.nome;
+        alunoEntity.email = dadosAlunoUpdate.email;
+        alunoEntity.senha = await bcrypt.hash(dadosAlunoUpdate.senha,10);
+
+        this.alunosRepository.atualizar(id,alunoEntity)
+        return {
+            "success":true,
+            "message":"Alterações Realizadas com Sucesso", 
+            "aluno": new listaAlunoDTO(
+                alunoEntity.id,
+                alunoEntity.nome,
+                alunoEntity.email,
+            )
+        };
     }
 
     @Delete('/:id')

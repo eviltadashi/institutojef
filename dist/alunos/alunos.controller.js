@@ -20,21 +20,23 @@ const aluno_entity_1 = require("./aluno.entity");
 const uuid_1 = require("uuid");
 const listaAlunoDTO_1 = require("./dto/listaAlunoDTO");
 const atualizaAlunoDTO_1 = require("./dto/atualizaAlunoDTO");
+const bcrypt = require("bcrypt");
+const passport_1 = require("@nestjs/passport");
 let alunosController = class alunosController {
     constructor(alunosRepository) {
         this.alunosRepository = alunosRepository;
     }
     async createAluno(dadosAluno) {
         const alunoEntity = new aluno_entity_1.AlunoEntity();
-        alunoEntity.email = dadosAluno.email;
-        alunoEntity.senha = dadosAluno.senha;
-        alunoEntity.nome = dadosAluno.nome;
         alunoEntity.id = (0, uuid_1.v4)();
+        alunoEntity.nome = dadosAluno.nome;
+        alunoEntity.email = dadosAluno.email;
+        alunoEntity.senha = await bcrypt.hash(dadosAluno.senha, 10);
         this.alunosRepository.create(alunoEntity);
         return {
             "success": true,
             "message": "Aluno criado com sucesso",
-            "alunos": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.email, alunoEntity.nome, alunoEntity.id)
+            "alunos": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email)
         };
     }
     async listaAlunos() {
@@ -53,8 +55,17 @@ let alunosController = class alunosController {
         return retAlunoEmail;
     }
     async atualizaAluno(id, dadosAlunoUpdate) {
-        const retAtualizacaoAluno = await this.alunosRepository.atualizar(id, dadosAlunoUpdate);
-        return retAtualizacaoAluno;
+        const alunoEntity = new aluno_entity_1.AlunoEntity();
+        alunoEntity.id = (0, uuid_1.v4)();
+        alunoEntity.nome = dadosAlunoUpdate.nome;
+        alunoEntity.email = dadosAlunoUpdate.email;
+        alunoEntity.senha = await bcrypt.hash(dadosAlunoUpdate.senha, 10);
+        this.alunosRepository.atualizar(id, alunoEntity);
+        return {
+            "success": true,
+            "message": "Alterações Realizadas com Sucesso",
+            "aluno": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email)
+        };
     }
     async removeAluno(id) {
         const response = await this.alunosRepository.remover(id);
@@ -71,6 +82,7 @@ __decorate([
 ], alunosController.prototype, "createAluno", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

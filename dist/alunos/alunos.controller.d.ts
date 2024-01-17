@@ -22,12 +22,9 @@ export declare class alunosController {
     listaAlunosId(id: string): Promise<alunos | null>;
     listaAlunoEmail(email: string): Promise<alunos | null>;
     atualizaAluno(id: string, dadosAlunoUpdate: atualizaAlunoDTO): Promise<{
-        id: string;
-        nome: string;
-        email: string;
-        senha: string;
-        createdAt: Date;
-        updatedAt: Date;
+        success: boolean;
+        message: string;
+        aluno: listaAlunoDTO;
     }>;
     removeAluno(id: string): Promise<{
         id: string;

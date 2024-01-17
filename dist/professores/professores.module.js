@@ -6,20 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alunosModule = void 0;
+exports.professoresModule = void 0;
 const common_1 = require("@nestjs/common");
-const alunos_controller_1 = require("./alunos.controller");
-const alunos_repository_1 = require("./alunos.repository");
-const uniqueEmail_validator_1 = require("./validacao/uniqueEmail.validator");
-const passport_1 = require("@nestjs/passport");
-let alunosModule = class alunosModule {
+const professores_controller_1 = require("./professores.controller");
+let professoresModule = class professoresModule {
 };
-exports.alunosModule = alunosModule;
-exports.alunosModule = alunosModule = __decorate([
+exports.professoresModule = professoresModule;
+exports.professoresModule = professoresModule = __decorate([
     (0, common_1.Module)({
-        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
-        controllers: [alunos_controller_1.alunosController],
-        providers: [alunos_repository_1.alunosRepository, uniqueEmail_validator_1.UniqueEmailValidator]
+        controllers: [professores_controller_1.professoresController]
     })
-], alunosModule);
-//# sourceMappingURL=alunos.module.js.map
+], professoresModule);
+//# sourceMappingURL=professores.module.js.map

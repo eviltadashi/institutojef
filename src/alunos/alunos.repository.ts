@@ -30,11 +30,15 @@ export class alunosRepository{
         })
     }
 
-    async getAlunoEmail(email:string ) {
+    async getAlunoEmail(email: string) {
+        console.log('passou poelo alunos.repository');
         return prisma.alunos.findUnique({
-            where: {email},
+            where: {
+                email: email,
+            }
         })
     }
+      
 
     async atualizar(id: string, dadosAlunoUpdate: Partial<AlunoEntity>){
         
