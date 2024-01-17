@@ -21,18 +21,15 @@ export class alunosController{
         alunoEntity.id = uuid();
         alunoEntity.nome = dadosAluno.nome;
         alunoEntity.email = dadosAluno.email;
+        alunoEntity.status = dadosAluno.status;
         alunoEntity.senha = await bcrypt.hash(dadosAluno.senha,10);
 
-        this.alunosRepository.create(alunoEntity)
+        const result = await this.alunosRepository.create(alunoEntity)
         return {
-            "success":true,
-            "message":"Aluno criado com sucesso", 
-            "alunos": new listaAlunoDTO(
-                alunoEntity.id,
-                alunoEntity.nome,
-                alunoEntity.email,
-            )
-        };
+            "id":result.id,
+            "nome":result.nome,
+            "email":result.email
+        }
     }
 
     @Get()
@@ -74,6 +71,7 @@ export class alunosController{
                 alunoEntity.id,
                 alunoEntity.nome,
                 alunoEntity.email,
+                alunoEntity.status
             )
         };
     }

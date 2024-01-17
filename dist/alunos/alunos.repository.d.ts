@@ -1,11 +1,11 @@
 import { AlunoEntity } from "./aluno.entity";
 export declare class alunosRepository {
-    private alunos;
     create(aluno: AlunoEntity): Promise<{
         id: string;
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -14,6 +14,7 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -22,6 +23,7 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -30,6 +32,7 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -38,6 +41,7 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -46,6 +50,7 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;

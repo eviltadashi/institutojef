@@ -1,4 +1,4 @@
-export class listaAlunoDTO {
+export class listaProfessoresDTO {
     constructor(
         readonly id:string,
         readonly nome:string,

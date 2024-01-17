@@ -4,26 +4,19 @@ import { PrismaClient } from "prisma/src/generated/client";
 
 const prisma = new PrismaClient();
 
-
 @Injectable()
 export class alunosRepository{
 
-    private alunos: AlunoEntity[] = [];
-
-    // POST Criar Aluno
     async create(aluno: AlunoEntity){
         return prisma.alunos.create({
             data: aluno,
         });
     }
 
-
-    //GET findMany é pegar todos registros
     async listar(){
         return prisma.alunos.findMany();
     }
 
-    //GET findMany é pegar todos registros
     async getAlunoId(id:string ) {
         return prisma.alunos.findUnique({
             where: {id},
@@ -31,40 +24,26 @@ export class alunosRepository{
     }
 
     async getAlunoEmail(email: string) {
-        console.log('passou poelo alunos.repository');
         return prisma.alunos.findUnique({
             where: {
                 email: email,
             }
         })
     }
-      
 
     async atualizar(id: string, dadosAlunoUpdate: Partial<AlunoEntity>){
-        
-        const possivelAluno =  await prisma.alunos.findUnique({
-            where: {id},
-        })
-
-
-        if(!possivelAluno){
-            throw new NotFoundException(`Aluno com ID ${id} não encontrado`);
-        }
-
+        const possivelAluno =  await prisma.alunos.findUnique({where: {id}})
+        if(!possivelAluno){throw new NotFoundException(`Aluno com ID ${id} não encontrado`);}
         Object.entries(dadosAlunoUpdate).forEach(([c,v])=>{
-            console.log('chave: '+ c , 'valor: '+ v);
             if(c==='id'){return;}
             possivelAluno[c] = v;
         });
-        
-
         const res = prisma.alunos.update({
             where: { id },
             data: possivelAluno,
         });
         return res;
     }
-
 
     async remover(id: string){
         const possivelAluno =  await prisma.alunos.findUnique({
@@ -84,11 +63,9 @@ export class alunosRepository{
         return res;
     }
    
-    async existeComEmail(email:string){
-        const possivelAluno = this.alunos.find(
-            aluno => aluno.email === email
-        );
-        return possivelAluno !== undefined;
+    async existeComEmail(email:string) : Promise<boolean> {
+        const aluno = await prisma.alunos.findUnique({where:{email}});
+        return !!aluno;
     }
 
 }

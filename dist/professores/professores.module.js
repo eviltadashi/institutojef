@@ -9,12 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.professoresModule = void 0;
 const common_1 = require("@nestjs/common");
 const professores_controller_1 = require("./professores.controller");
+const professores_repository_1 = require("./professores.repository");
+const uniqueEmailProfessor_validator_1 = require("./validacao/uniqueEmailProfessor.validator");
+const passport_1 = require("@nestjs/passport");
 let professoresModule = class professoresModule {
 };
 exports.professoresModule = professoresModule;
 exports.professoresModule = professoresModule = __decorate([
     (0, common_1.Module)({
-        controllers: [professores_controller_1.professoresController]
+        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
+        controllers: [professores_controller_1.professoresController],
+        providers: [professores_repository_1.professoresRepository, uniqueEmailProfessor_validator_1.verifyUniqueEmailProfessor]
     })
 ], professoresModule);
 //# sourceMappingURL=professores.module.js.map

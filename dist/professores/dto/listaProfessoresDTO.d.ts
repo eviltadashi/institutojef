@@ -1,4 +1,4 @@
-export declare class listaAlunoDTO {
+export declare class listaProfessoresDTO {
     readonly id: string;
     readonly nome: string;
     readonly email: string;

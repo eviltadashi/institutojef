@@ -7,15 +7,16 @@ export declare class alunosController {
     private alunosRepository;
     constructor(alunosRepository: alunosRepository);
     createAluno(dadosAluno: CriarAlunoDTO): Promise<{
-        success: boolean;
-        message: string;
-        alunos: listaAlunoDTO;
+        id: string;
+        nome: string;
+        email: string;
     }>;
     listaAlunos(): Promise<{
         id: string;
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -31,6 +32,7 @@ export declare class alunosController {
         nome: string;
         email: string;
         senha: string;
+        status: boolean;
         createdAt: Date;
         updatedAt: Date;
     }>;

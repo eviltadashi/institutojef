@@ -1,5 +1,4 @@
-export class AlunoEntity {
-    id: string;
+export declare class CriarProfessorDTO {
     nome: string;
     email: string;
     senha: string;

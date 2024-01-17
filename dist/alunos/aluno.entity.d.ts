@@ -3,4 +3,5 @@ export declare class AlunoEntity {
     nome: string;
     email: string;
     senha: string;
+    status: boolean;
 }

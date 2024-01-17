@@ -112,6 +112,17 @@ exports.Prisma.AlunosScalarFieldEnum = {
   nome: 'nome',
   email: 'email',
   senha: 'senha',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProfessoresScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  email: 'email',
+  senha: 'senha',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -123,7 +134,8 @@ exports.Prisma.SortOrder = {
 
 
 exports.Prisma.ModelName = {
-  alunos: 'alunos'
+  alunos: 'alunos',
+  professores: 'professores'
 };
 
 /**

@@ -9,20 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginDto = void 0;
+exports.CriarProfessorDTO = void 0;
 const class_validator_1 = require("class-validator");
-const uniqueEmail_validator_1 = require("../alunos/validacao/uniqueEmail.validator");
-class LoginDto {
+const uniqueEmailProfessor_validator_1 = require("../validacao/uniqueEmailProfessor.validator");
+class CriarProfessorDTO {
 }
-exports.LoginDto = LoginDto;
+exports.CriarProfessorDTO = CriarProfessorDTO;
 __decorate([
-    (0, class_validator_1.IsEmail)(undefined, { message: 'email invalido, verifique o campo.' }),
-    (0, class_validator_1.IsOptional)(),
-    (0, uniqueEmail_validator_1.uniqueEmail)({ message: 'E-mail já cadastrado' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Nome não pode ficar vazio' }),
     __metadata("design:type", String)
-], LoginDto.prototype, "email", void 0);
+], CriarProfessorDTO.prototype, "nome", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEmail)(undefined, { message: 'E-Mail inválido' }),
+    (0, uniqueEmailProfessor_validator_1.uniqueEmailProfessor)({ message: 'o Email informado já existe' }),
     __metadata("design:type", String)
-], LoginDto.prototype, "senha", void 0);
-//# sourceMappingURL=login.dto.js.map
+], CriarProfessorDTO.prototype, "email", void 0);
+__decorate([
+    (0, class_validator_1.MinLength)(6, { message: 'Senha deve conter o minimo de 6 caracteres' }),
+    __metadata("design:type", String)
+], CriarProfessorDTO.prototype, "senha", void 0);
+//# sourceMappingURL=criarProfessorDTO.js.map

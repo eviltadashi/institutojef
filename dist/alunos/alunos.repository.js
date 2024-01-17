@@ -11,9 +11,6 @@ const common_1 = require("@nestjs/common");
 const client_1 = require("../../prisma/src/generated/client/index.js");
 const prisma = new client_1.PrismaClient();
 let alunosRepository = class alunosRepository {
-    constructor() {
-        this.alunos = [];
-    }
     async create(aluno) {
         return prisma.alunos.create({
             data: aluno,
@@ -28,7 +25,6 @@ let alunosRepository = class alunosRepository {
         });
     }
     async getAlunoEmail(email) {
-        console.log('passou poelo alunos.repository');
         return prisma.alunos.findUnique({
             where: {
                 email: email,
@@ -36,14 +32,11 @@ let alunosRepository = class alunosRepository {
         });
     }
     async atualizar(id, dadosAlunoUpdate) {
-        const possivelAluno = await prisma.alunos.findUnique({
-            where: { id },
-        });
+        const possivelAluno = await prisma.alunos.findUnique({ where: { id } });
         if (!possivelAluno) {
             throw new common_1.NotFoundException(`Aluno com ID ${id} não encontrado`);
         }
         Object.entries(dadosAlunoUpdate).forEach(([c, v]) => {
-            console.log('chave: ' + c, 'valor: ' + v);
             if (c === 'id') {
                 return;
             }
@@ -69,8 +62,8 @@ let alunosRepository = class alunosRepository {
         return res;
     }
     async existeComEmail(email) {
-        const possivelAluno = this.alunos.find(aluno => aluno.email === email);
-        return possivelAluno !== undefined;
+        const aluno = await prisma.alunos.findUnique({ where: { email } });
+        return !!aluno;
     }
 };
 exports.alunosRepository = alunosRepository;

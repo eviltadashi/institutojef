@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 import { uniqueEmail } from "../validacao/uniqueEmail.validator";
 
 export class CriarAlunoDTO{
@@ -12,4 +12,6 @@ export class CriarAlunoDTO{
 
     @MinLength(6, {message:'Senha deve ter ao menos 6 caracteres'})
     senha: string;
+
+    status: boolean;
 }

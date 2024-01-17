@@ -31,12 +31,13 @@ let alunosController = class alunosController {
         alunoEntity.id = (0, uuid_1.v4)();
         alunoEntity.nome = dadosAluno.nome;
         alunoEntity.email = dadosAluno.email;
+        alunoEntity.status = dadosAluno.status;
         alunoEntity.senha = await bcrypt.hash(dadosAluno.senha, 10);
-        this.alunosRepository.create(alunoEntity);
+        const result = await this.alunosRepository.create(alunoEntity);
         return {
-            "success": true,
-            "message": "Aluno criado com sucesso",
-            "alunos": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email)
+            "id": result.id,
+            "nome": result.nome,
+            "email": result.email
         };
     }
     async listaAlunos() {
@@ -64,7 +65,7 @@ let alunosController = class alunosController {
         return {
             "success": true,
             "message": "Alterações Realizadas com Sucesso",
-            "aluno": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email)
+            "aluno": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email, alunoEntity.status)
         };
     }
     async removeAluno(id) {

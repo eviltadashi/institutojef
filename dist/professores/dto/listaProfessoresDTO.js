@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.listaAlunoDTO = void 0;
-class listaAlunoDTO {
+exports.listaProfessoresDTO = void 0;
+class listaProfessoresDTO {
     constructor(id, nome, email, status) {
         this.id = id;
         this.nome = nome;
@@ -9,5 +9,5 @@ class listaAlunoDTO {
         this.status = status;
     }
 }
-exports.listaAlunoDTO = listaAlunoDTO;
-//# sourceMappingURL=listaAlunoDTO.js.map
+exports.listaProfessoresDTO = listaProfessoresDTO;
+//# sourceMappingURL=listaProfessoresDTO.js.map
