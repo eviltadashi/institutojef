@@ -15,4 +15,7 @@ export class atualizaAlunoDTO{
     @MinLength(6, {message:'Senha deve ter ao menos 6 caracteres'})
     @IsOptional()
     senha: string; 
+
+    @IsOptional()
+    is_active:boolean;
 }

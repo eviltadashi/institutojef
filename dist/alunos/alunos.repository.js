@@ -52,7 +52,6 @@ let alunosRepository = class alunosRepository {
         const possivelAluno = await prisma.alunos.findUnique({
             where: { id },
         });
-        console.log(possivelAluno);
         if (!possivelAluno) {
             throw new common_1.NotFoundException(`Aluno com ID ${id} não encontrado`);
         }

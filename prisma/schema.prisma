@@ -19,7 +19,8 @@ model alunos {
   nome      String
   email     String   @unique
   senha     String
-  status    Boolean  @default(true)
+  is_active Boolean  @default(true)
+  userType  String   @default("aluno")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -29,7 +30,54 @@ model professores {
   nome      String
   email     String   @unique
   senha     String
-  status    Boolean  @default(true)
+  is_active Boolean  @default(true)
+  userType  String   @default("professor")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model cursos {
+  id        String   @unique   @id
+  nome      String
+  descricao String
+  banner    String
+  is_active Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model aulas {
+  id        String   @unique   @id
+  nome      String
+  descricao String
+  is_active Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model aulas_conteudo {
+  id        String   @unique   @id
+  id_curso  String
+  nome      String
+  conteudo  Bytes 
+}
+
+model relation_curso_aulas {
+  id        String   @unique   @id
+  id_curso  String
+  id_aula   String
+}
+
+model relation_aluno_curso {
+  id        String   @unique   @id
+  id_aluno  String  
+  id_curso  String
+  status    StatusEnum
+}
+
+enum StatusEnum {
+  ADICIONADO
+  INICIADO
+  CONCLUIDO
+  CANCELADO
 }

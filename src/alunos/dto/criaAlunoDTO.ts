@@ -13,5 +13,5 @@ export class CriarAlunoDTO{
     @MinLength(6, {message:'Senha deve ter ao menos 6 caracteres'})
     senha: string;
 
-    status: boolean;
+    is_active: boolean;
 }

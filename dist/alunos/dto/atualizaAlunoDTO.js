@@ -31,4 +31,8 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], atualizaAlunoDTO.prototype, "senha", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Boolean)
+], atualizaAlunoDTO.prototype, "is_active", void 0);
 //# sourceMappingURL=atualizaAlunoDTO.js.map

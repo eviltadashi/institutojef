@@ -5,6 +5,8 @@ import { JwtStrategy } from './jwt.strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { alunosRepository } from '../alunos/alunos.repository';
+import { professoresRepository } from 'src/professores/professores.repository';
+import { CursosRepository } from 'src/cursos/cursos.repository';
 
 
 const segredo = process.env.PASSPORTJWT;
@@ -18,7 +20,7 @@ const segredo = process.env.PASSPORTJWT;
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, alunosRepository],
+  providers: [AuthService, JwtStrategy, alunosRepository, professoresRepository, CursosRepository],
   exports: [PassportModule, JwtModule],
 })
 

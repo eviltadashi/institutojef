@@ -17,22 +17,24 @@ const common_1 = require("@nestjs/common");
 const alunos_repository_1 = require("./alunos.repository");
 const criaAlunoDTO_1 = require("./dto/criaAlunoDTO");
 const aluno_entity_1 = require("./aluno.entity");
-const uuid_1 = require("uuid");
-const listaAlunoDTO_1 = require("./dto/listaAlunoDTO");
 const atualizaAlunoDTO_1 = require("./dto/atualizaAlunoDTO");
+const uuid_1 = require("uuid");
 const bcrypt = require("bcrypt");
 const passport_1 = require("@nestjs/passport");
+const decodeToken_service_1 = require("../decodeToken.service");
 let alunosController = class alunosController {
-    constructor(alunosRepository) {
+    constructor(alunosRepository, jwtDecripty) {
         this.alunosRepository = alunosRepository;
+        this.jwtDecripty = jwtDecripty;
     }
     async createAluno(dadosAluno) {
         const alunoEntity = new aluno_entity_1.AlunoEntity();
         alunoEntity.id = (0, uuid_1.v4)();
         alunoEntity.nome = dadosAluno.nome;
         alunoEntity.email = dadosAluno.email;
-        alunoEntity.status = dadosAluno.status;
+        alunoEntity.is_active = dadosAluno.is_active;
         alunoEntity.senha = await bcrypt.hash(dadosAluno.senha, 10);
+        alunoEntity.userType = 'aluno';
         const result = await this.alunosRepository.create(alunoEntity);
         return {
             "id": result.id,
@@ -40,9 +42,14 @@ let alunosController = class alunosController {
             "email": result.email
         };
     }
-    async listaAlunos() {
-        const retAlunos = await this.alunosRepository.listar();
-        return retAlunos;
+    async listaAlunos(auth) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const retAlunos = await this.alunosRepository.listar();
+            return retAlunos;
+        }
+        return { "mensagem": "Acesso restrito." };
     }
     async listaAlunosId(id) {
         const retAluno = await this.alunosRepository.getAlunoId(id);
@@ -57,20 +64,30 @@ let alunosController = class alunosController {
     }
     async atualizaAluno(id, dadosAlunoUpdate) {
         const alunoEntity = new aluno_entity_1.AlunoEntity();
-        alunoEntity.id = (0, uuid_1.v4)();
         alunoEntity.nome = dadosAlunoUpdate.nome;
         alunoEntity.email = dadosAlunoUpdate.email;
-        alunoEntity.senha = await bcrypt.hash(dadosAlunoUpdate.senha, 10);
-        this.alunosRepository.atualizar(id, alunoEntity);
+        if (dadosAlunoUpdate.senha) {
+            alunoEntity.senha = await bcrypt.hash(dadosAlunoUpdate.senha, 10);
+        }
+        const res = await this.alunosRepository.atualizar(id, alunoEntity);
         return {
-            "success": true,
-            "message": "Alterações Realizadas com Sucesso",
-            "aluno": new listaAlunoDTO_1.listaAlunoDTO(alunoEntity.id, alunoEntity.nome, alunoEntity.email, alunoEntity.status)
+            "id": res.id,
+            "nome": res.nome,
+            "email": res.email,
+            "createdAt": res.createdAt,
+            "updatedAt": res.updatedAt,
+            "is_active": res.is_active
         };
     }
     async removeAluno(id) {
-        const response = await this.alunosRepository.remover(id);
-        return response;
+        const entity = new aluno_entity_1.AlunoEntity();
+        entity.is_active = false;
+        const res = await this.alunosRepository.atualizar(id, entity);
+        return {
+            "id": res.id,
+            "email": res.email,
+            "is_active": res.is_active
+        };
     }
 };
 exports.alunosController = alunosController;
@@ -84,8 +101,9 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], alunosController.prototype, "listaAlunos", null);
 __decorate([
@@ -119,6 +137,7 @@ __decorate([
 ], alunosController.prototype, "removeAluno", null);
 exports.alunosController = alunosController = __decorate([
     (0, common_1.Controller)('/alunos'),
-    __metadata("design:paramtypes", [alunos_repository_1.alunosRepository])
+    __metadata("design:paramtypes", [alunos_repository_1.alunosRepository,
+        decodeToken_service_1.JwtDecripty])
 ], alunosController);
 //# sourceMappingURL=alunos.controller.js.map

@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtDecripty } from 'src/decodeToken.service';
+import { UniqueEmailValidator } from './validacao/uniqueEmail.validator';
 import { alunosController } from './alunos.controller';
 import { alunosRepository } from './alunos.repository';
-import { UniqueEmailValidator } from './validacao/uniqueEmail.validator';
-import { PassportModule } from '@nestjs/passport';
-
 
 @Module({
-  imports: [PassportModule.register({ defaultStrategy: 'jwt' })],
+  imports: [PassportModule.register({ defaultStrategy: 'jwt' }), JwtModule],
   controllers: [alunosController],
-  providers:[alunosRepository, UniqueEmailValidator ]
+  providers:[alunosRepository, UniqueEmailValidator, JwtDecripty]
 })
 
 export class alunosModule {}

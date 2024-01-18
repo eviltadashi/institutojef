@@ -49,17 +49,12 @@ export class alunosRepository{
         const possivelAluno =  await prisma.alunos.findUnique({
             where: {id},
         })
-
-        console.log(possivelAluno);
-        
         if(!possivelAluno){
             throw new NotFoundException(`Aluno com ID ${id} não encontrado`);
         }
-
         const res = prisma.alunos.delete({
             where: { id }
         });
-
         return res;
     }
    

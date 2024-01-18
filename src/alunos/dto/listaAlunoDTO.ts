@@ -3,7 +3,7 @@ export class listaAlunoDTO {
         readonly id:string,
         readonly nome:string,
         readonly email:string,
-        readonly status:boolean,
+        readonly is_active:boolean,
     ){}
 }
  

@@ -13,10 +13,12 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const alunos_repository_1 = require("../alunos/alunos.repository");
+const professores_repository_1 = require("../professores/professores.repository");
 const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
-    constructor(alunosRepository, jwtService) {
+    constructor(alunosRepository, professoresRepository, jwtService) {
         this.alunosRepository = alunosRepository;
+        this.professoresRepository = professoresRepository;
         this.jwtService = jwtService;
     }
     async validatealuno(email, senha) {
@@ -27,8 +29,16 @@ let AuthService = class AuthService {
         }
         return null;
     }
-    async login(aluno) {
-        const payload = { sub: aluno.id, email: aluno.email };
+    async validateProfessor(email, senha) {
+        const professor = await this.professoresRepository.listarProfessorPorEmail(email);
+        if (professor && (await bcrypt.compare(senha, professor.senha))) {
+            const { senha, ...result } = professor;
+            return result;
+        }
+        return null;
+    }
+    async login(usuario) {
+        const payload = { sub: usuario.id, email: usuario.email, userType: usuario.userType };
         return {
             access_token: this.jwtService.sign(payload),
         };
@@ -38,6 +48,7 @@ exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [alunos_repository_1.alunosRepository,
+        professores_repository_1.professoresRepository,
         jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

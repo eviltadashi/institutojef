@@ -5,7 +5,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -14,7 +15,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -23,7 +25,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -32,7 +35,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -41,7 +45,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -50,7 +55,8 @@ export declare class alunosRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;

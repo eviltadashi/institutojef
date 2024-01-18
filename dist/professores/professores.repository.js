@@ -24,6 +24,12 @@ let professoresRepository = class professoresRepository {
         });
         return ret;
     }
+    async listarProfessorPorEmail(email) {
+        const ret = prisma.professores.findUnique({
+            where: { email },
+        });
+        return ret;
+    }
     async criarProfessor(dados) {
         return prisma.professores.create({
             data: dados,

@@ -6,7 +6,8 @@ export declare class professoresRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -15,7 +16,18 @@ export declare class professoresRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    listarProfessorPorEmail(email: string): Promise<{
+        id: string;
+        nome: string;
+        email: string;
+        senha: string;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -24,7 +36,8 @@ export declare class professoresRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -33,7 +46,8 @@ export declare class professoresRepository {
         nome: string;
         email: string;
         senha: string;
-        status: boolean;
+        is_active: boolean;
+        userType: string;
         createdAt: Date;
         updatedAt: Date;
     }>;

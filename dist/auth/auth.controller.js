@@ -23,7 +23,11 @@ let AuthController = class AuthController {
     async login(dadosLogin) {
         const aluno = await this.authService.validatealuno(dadosLogin.email, dadosLogin.senha);
         if (!aluno) {
-            throw new common_1.UnauthorizedException('Credenciais inválidas');
+            const professor = await this.authService.validateProfessor(dadosLogin.email, dadosLogin.senha);
+            if (!professor) {
+                throw new common_1.UnauthorizedException('Credenciais inválidas');
+            }
+            return this.authService.login(professor);
         }
         return this.authService.login(aluno);
     }

@@ -14,6 +14,8 @@ const jwt_strategy_1 = require("./jwt.strategy");
 const auth_service_1 = require("./auth.service");
 const auth_controller_1 = require("./auth.controller");
 const alunos_repository_1 = require("../alunos/alunos.repository");
+const professores_repository_1 = require("../professores/professores.repository");
+const cursos_repository_1 = require("../cursos/cursos.repository");
 const segredo = process.env.PASSPORTJWT;
 let AuthModule = class AuthModule {
 };
@@ -28,7 +30,7 @@ exports.AuthModule = AuthModule = __decorate([
             }),
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, alunos_repository_1.alunosRepository],
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, alunos_repository_1.alunosRepository, professores_repository_1.professoresRepository, cursos_repository_1.CursosRepository],
         exports: [passport_1.PassportModule, jwt_1.JwtModule],
     })
 ], AuthModule);

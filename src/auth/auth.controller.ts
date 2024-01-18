@@ -8,7 +8,13 @@ export class AuthController {
   @Post()
   async login(@Body() dadosLogin: LoginDto){
     const aluno = await this.authService.validatealuno(dadosLogin.email, dadosLogin.senha);
-    if (!aluno) {throw new UnauthorizedException('Credenciais inválidas');}
+    if (!aluno) {
+      const professor = await this.authService.validateProfessor(dadosLogin.email, dadosLogin.senha);
+      if(!professor){
+        throw new UnauthorizedException('Credenciais inválidas');
+      }
+      return this.authService.login(professor);
+    }
     return this.authService.login(aluno);
   }
 }

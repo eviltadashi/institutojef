@@ -8,18 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.alunosModule = void 0;
 const common_1 = require("@nestjs/common");
+const passport_1 = require("@nestjs/passport");
+const jwt_1 = require("@nestjs/jwt");
+const decodeToken_service_1 = require("../decodeToken.service");
+const uniqueEmail_validator_1 = require("./validacao/uniqueEmail.validator");
 const alunos_controller_1 = require("./alunos.controller");
 const alunos_repository_1 = require("./alunos.repository");
-const uniqueEmail_validator_1 = require("./validacao/uniqueEmail.validator");
-const passport_1 = require("@nestjs/passport");
 let alunosModule = class alunosModule {
 };
 exports.alunosModule = alunosModule;
 exports.alunosModule = alunosModule = __decorate([
     (0, common_1.Module)({
-        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
+        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' }), jwt_1.JwtModule],
         controllers: [alunos_controller_1.alunosController],
-        providers: [alunos_repository_1.alunosRepository, uniqueEmail_validator_1.UniqueEmailValidator]
+        providers: [alunos_repository_1.alunosRepository, uniqueEmail_validator_1.UniqueEmailValidator, decodeToken_service_1.JwtDecripty]
     })
 ], alunosModule);
 //# sourceMappingURL=alunos.module.js.map

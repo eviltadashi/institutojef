@@ -23,6 +23,50 @@ export type alunos = $Result.DefaultSelection<Prisma.$alunosPayload>
  * 
  */
 export type professores = $Result.DefaultSelection<Prisma.$professoresPayload>
+/**
+ * Model cursos
+ * 
+ */
+export type cursos = $Result.DefaultSelection<Prisma.$cursosPayload>
+/**
+ * Model aulas
+ * 
+ */
+export type aulas = $Result.DefaultSelection<Prisma.$aulasPayload>
+/**
+ * Model aulas_conteudo
+ * 
+ */
+export type aulas_conteudo = $Result.DefaultSelection<Prisma.$aulas_conteudoPayload>
+/**
+ * Model relation_curso_aulas
+ * 
+ */
+export type relation_curso_aulas = $Result.DefaultSelection<Prisma.$relation_curso_aulasPayload>
+/**
+ * Model relation_aluno_curso
+ * 
+ */
+export type relation_aluno_curso = $Result.DefaultSelection<Prisma.$relation_aluno_cursoPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const StatusEnum: {
+  ADICIONADO: 'ADICIONADO',
+  INICIADO: 'INICIADO',
+  CONCLUIDO: 'CONCLUIDO',
+  CANCELADO: 'CANCELADO'
+};
+
+export type StatusEnum = (typeof StatusEnum)[keyof typeof StatusEnum]
+
+}
+
+export type StatusEnum = $Enums.StatusEnum
+
+export const StatusEnum: typeof $Enums.StatusEnum
 
 /**
  * ##  Prisma Client ʲˢ
@@ -165,6 +209,56 @@ export class PrismaClient<
     * ```
     */
   get professores(): Prisma.professoresDelegate<ExtArgs>;
+
+  /**
+   * `prisma.cursos`: Exposes CRUD operations for the **cursos** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Cursos
+    * const cursos = await prisma.cursos.findMany()
+    * ```
+    */
+  get cursos(): Prisma.cursosDelegate<ExtArgs>;
+
+  /**
+   * `prisma.aulas`: Exposes CRUD operations for the **aulas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Aulas
+    * const aulas = await prisma.aulas.findMany()
+    * ```
+    */
+  get aulas(): Prisma.aulasDelegate<ExtArgs>;
+
+  /**
+   * `prisma.aulas_conteudo`: Exposes CRUD operations for the **aulas_conteudo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Aulas_conteudos
+    * const aulas_conteudos = await prisma.aulas_conteudo.findMany()
+    * ```
+    */
+  get aulas_conteudo(): Prisma.aulas_conteudoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.relation_curso_aulas`: Exposes CRUD operations for the **relation_curso_aulas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Relation_curso_aulas
+    * const relation_curso_aulas = await prisma.relation_curso_aulas.findMany()
+    * ```
+    */
+  get relation_curso_aulas(): Prisma.relation_curso_aulasDelegate<ExtArgs>;
+
+  /**
+   * `prisma.relation_aluno_curso`: Exposes CRUD operations for the **relation_aluno_curso** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Relation_aluno_cursos
+    * const relation_aluno_cursos = await prisma.relation_aluno_curso.findMany()
+    * ```
+    */
+  get relation_aluno_curso(): Prisma.relation_aluno_cursoDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -636,7 +730,12 @@ export namespace Prisma {
 
   export const ModelName: {
     alunos: 'alunos',
-    professores: 'professores'
+    professores: 'professores',
+    cursos: 'cursos',
+    aulas: 'aulas',
+    aulas_conteudo: 'aulas_conteudo',
+    relation_curso_aulas: 'relation_curso_aulas',
+    relation_aluno_curso: 'relation_aluno_curso'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -653,7 +752,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'alunos' | 'professores'
+      modelProps: 'alunos' | 'professores' | 'cursos' | 'aulas' | 'aulas_conteudo' | 'relation_curso_aulas' | 'relation_aluno_curso'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -786,6 +885,336 @@ export namespace Prisma {
           count: {
             args: Prisma.professoresCountArgs<ExtArgs>,
             result: $Utils.Optional<ProfessoresCountAggregateOutputType> | number
+          }
+        }
+      }
+      cursos: {
+        payload: Prisma.$cursosPayload<ExtArgs>
+        fields: Prisma.cursosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.cursosFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.cursosFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          findFirst: {
+            args: Prisma.cursosFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.cursosFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          findMany: {
+            args: Prisma.cursosFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>[]
+          }
+          create: {
+            args: Prisma.cursosCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          createMany: {
+            args: Prisma.cursosCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.cursosDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          update: {
+            args: Prisma.cursosUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          deleteMany: {
+            args: Prisma.cursosDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.cursosUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.cursosUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$cursosPayload>
+          }
+          aggregate: {
+            args: Prisma.CursosAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCursos>
+          }
+          groupBy: {
+            args: Prisma.cursosGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CursosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.cursosCountArgs<ExtArgs>,
+            result: $Utils.Optional<CursosCountAggregateOutputType> | number
+          }
+        }
+      }
+      aulas: {
+        payload: Prisma.$aulasPayload<ExtArgs>
+        fields: Prisma.aulasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.aulasFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.aulasFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          findFirst: {
+            args: Prisma.aulasFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.aulasFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          findMany: {
+            args: Prisma.aulasFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>[]
+          }
+          create: {
+            args: Prisma.aulasCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          createMany: {
+            args: Prisma.aulasCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.aulasDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          update: {
+            args: Prisma.aulasUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          deleteMany: {
+            args: Prisma.aulasDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.aulasUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.aulasUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulasPayload>
+          }
+          aggregate: {
+            args: Prisma.AulasAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAulas>
+          }
+          groupBy: {
+            args: Prisma.aulasGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AulasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.aulasCountArgs<ExtArgs>,
+            result: $Utils.Optional<AulasCountAggregateOutputType> | number
+          }
+        }
+      }
+      aulas_conteudo: {
+        payload: Prisma.$aulas_conteudoPayload<ExtArgs>
+        fields: Prisma.aulas_conteudoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.aulas_conteudoFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.aulas_conteudoFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          findFirst: {
+            args: Prisma.aulas_conteudoFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.aulas_conteudoFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          findMany: {
+            args: Prisma.aulas_conteudoFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>[]
+          }
+          create: {
+            args: Prisma.aulas_conteudoCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          createMany: {
+            args: Prisma.aulas_conteudoCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.aulas_conteudoDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          update: {
+            args: Prisma.aulas_conteudoUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          deleteMany: {
+            args: Prisma.aulas_conteudoDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.aulas_conteudoUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.aulas_conteudoUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$aulas_conteudoPayload>
+          }
+          aggregate: {
+            args: Prisma.Aulas_conteudoAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAulas_conteudo>
+          }
+          groupBy: {
+            args: Prisma.aulas_conteudoGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Aulas_conteudoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.aulas_conteudoCountArgs<ExtArgs>,
+            result: $Utils.Optional<Aulas_conteudoCountAggregateOutputType> | number
+          }
+        }
+      }
+      relation_curso_aulas: {
+        payload: Prisma.$relation_curso_aulasPayload<ExtArgs>
+        fields: Prisma.relation_curso_aulasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.relation_curso_aulasFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.relation_curso_aulasFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          findFirst: {
+            args: Prisma.relation_curso_aulasFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.relation_curso_aulasFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          findMany: {
+            args: Prisma.relation_curso_aulasFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>[]
+          }
+          create: {
+            args: Prisma.relation_curso_aulasCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          createMany: {
+            args: Prisma.relation_curso_aulasCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.relation_curso_aulasDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          update: {
+            args: Prisma.relation_curso_aulasUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          deleteMany: {
+            args: Prisma.relation_curso_aulasDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.relation_curso_aulasUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.relation_curso_aulasUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_curso_aulasPayload>
+          }
+          aggregate: {
+            args: Prisma.Relation_curso_aulasAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateRelation_curso_aulas>
+          }
+          groupBy: {
+            args: Prisma.relation_curso_aulasGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Relation_curso_aulasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.relation_curso_aulasCountArgs<ExtArgs>,
+            result: $Utils.Optional<Relation_curso_aulasCountAggregateOutputType> | number
+          }
+        }
+      }
+      relation_aluno_curso: {
+        payload: Prisma.$relation_aluno_cursoPayload<ExtArgs>
+        fields: Prisma.relation_aluno_cursoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.relation_aluno_cursoFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.relation_aluno_cursoFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          findFirst: {
+            args: Prisma.relation_aluno_cursoFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.relation_aluno_cursoFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          findMany: {
+            args: Prisma.relation_aluno_cursoFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>[]
+          }
+          create: {
+            args: Prisma.relation_aluno_cursoCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          createMany: {
+            args: Prisma.relation_aluno_cursoCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.relation_aluno_cursoDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          update: {
+            args: Prisma.relation_aluno_cursoUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          deleteMany: {
+            args: Prisma.relation_aluno_cursoDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.relation_aluno_cursoUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.relation_aluno_cursoUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$relation_aluno_cursoPayload>
+          }
+          aggregate: {
+            args: Prisma.Relation_aluno_cursoAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateRelation_aluno_curso>
+          }
+          groupBy: {
+            args: Prisma.relation_aluno_cursoGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Relation_aluno_cursoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.relation_aluno_cursoCountArgs<ExtArgs>,
+            result: $Utils.Optional<Relation_aluno_cursoCountAggregateOutputType> | number
           }
         }
       }
@@ -953,7 +1382,8 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
-    status: boolean | null
+    is_active: boolean | null
+    userType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -963,7 +1393,8 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
-    status: boolean | null
+    is_active: boolean | null
+    userType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -973,7 +1404,8 @@ export namespace Prisma {
     nome: number
     email: number
     senha: number
-    status: number
+    is_active: number
+    userType: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -985,7 +1417,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -995,7 +1428,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1005,7 +1439,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1088,7 +1523,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status: boolean
+    is_active: boolean
+    userType: string
     createdAt: Date
     updatedAt: Date
     _count: AlunosCountAggregateOutputType | null
@@ -1115,7 +1551,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
-    status?: boolean
+    is_active?: boolean
+    userType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["alunos"]>
@@ -1125,7 +1562,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
-    status?: boolean
+    is_active?: boolean
+    userType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1139,7 +1577,8 @@ export namespace Prisma {
       nome: string
       email: string
       senha: string
-      status: boolean
+      is_active: boolean
+      userType: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["alunos"]>
@@ -1540,7 +1979,8 @@ export namespace Prisma {
     readonly nome: FieldRef<"alunos", 'String'>
     readonly email: FieldRef<"alunos", 'String'>
     readonly senha: FieldRef<"alunos", 'String'>
-    readonly status: FieldRef<"alunos", 'Boolean'>
+    readonly is_active: FieldRef<"alunos", 'Boolean'>
+    readonly userType: FieldRef<"alunos", 'String'>
     readonly createdAt: FieldRef<"alunos", 'DateTime'>
     readonly updatedAt: FieldRef<"alunos", 'DateTime'>
   }
@@ -1845,7 +2285,8 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
-    status: boolean | null
+    is_active: boolean | null
+    userType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1855,7 +2296,8 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
-    status: boolean | null
+    is_active: boolean | null
+    userType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1865,7 +2307,8 @@ export namespace Prisma {
     nome: number
     email: number
     senha: number
-    status: number
+    is_active: number
+    userType: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1877,7 +2320,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1887,7 +2331,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1897,7 +2342,8 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
-    status?: true
+    is_active?: true
+    userType?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1980,7 +2426,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status: boolean
+    is_active: boolean
+    userType: string
     createdAt: Date
     updatedAt: Date
     _count: ProfessoresCountAggregateOutputType | null
@@ -2007,7 +2454,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
-    status?: boolean
+    is_active?: boolean
+    userType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["professores"]>
@@ -2017,7 +2465,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
-    status?: boolean
+    is_active?: boolean
+    userType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -2031,7 +2480,8 @@ export namespace Prisma {
       nome: string
       email: string
       senha: string
-      status: boolean
+      is_active: boolean
+      userType: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["professores"]>
@@ -2432,7 +2882,8 @@ export namespace Prisma {
     readonly nome: FieldRef<"professores", 'String'>
     readonly email: FieldRef<"professores", 'String'>
     readonly senha: FieldRef<"professores", 'String'>
-    readonly status: FieldRef<"professores", 'Boolean'>
+    readonly is_active: FieldRef<"professores", 'Boolean'>
+    readonly userType: FieldRef<"professores", 'String'>
     readonly createdAt: FieldRef<"professores", 'DateTime'>
     readonly updatedAt: FieldRef<"professores", 'DateTime'>
   }
@@ -2723,6 +3174,4345 @@ export namespace Prisma {
 
 
   /**
+   * Model cursos
+   */
+
+  export type AggregateCursos = {
+    _count: CursosCountAggregateOutputType | null
+    _min: CursosMinAggregateOutputType | null
+    _max: CursosMaxAggregateOutputType | null
+  }
+
+  export type CursosMinAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    descricao: string | null
+    banner: string | null
+    is_active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CursosMaxAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    descricao: string | null
+    banner: string | null
+    is_active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CursosCountAggregateOutputType = {
+    id: number
+    nome: number
+    descricao: number
+    banner: number
+    is_active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CursosMinAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    banner?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CursosMaxAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    banner?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CursosCountAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    banner?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CursosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which cursos to aggregate.
+     */
+    where?: cursosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cursos to fetch.
+     */
+    orderBy?: cursosOrderByWithRelationInput | cursosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: cursosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned cursos
+    **/
+    _count?: true | CursosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CursosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CursosMaxAggregateInputType
+  }
+
+  export type GetCursosAggregateType<T extends CursosAggregateArgs> = {
+        [P in keyof T & keyof AggregateCursos]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCursos[P]>
+      : GetScalarType<T[P], AggregateCursos[P]>
+  }
+
+
+
+
+  export type cursosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: cursosWhereInput
+    orderBy?: cursosOrderByWithAggregationInput | cursosOrderByWithAggregationInput[]
+    by: CursosScalarFieldEnum[] | CursosScalarFieldEnum
+    having?: cursosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CursosCountAggregateInputType | true
+    _min?: CursosMinAggregateInputType
+    _max?: CursosMaxAggregateInputType
+  }
+
+  export type CursosGroupByOutputType = {
+    id: string
+    nome: string
+    descricao: string
+    banner: string
+    is_active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: CursosCountAggregateOutputType | null
+    _min: CursosMinAggregateOutputType | null
+    _max: CursosMaxAggregateOutputType | null
+  }
+
+  type GetCursosGroupByPayload<T extends cursosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CursosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CursosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CursosGroupByOutputType[P]>
+            : GetScalarType<T[P], CursosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type cursosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    banner?: boolean
+    is_active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["cursos"]>
+
+  export type cursosSelectScalar = {
+    id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    banner?: boolean
+    is_active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $cursosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "cursos"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nome: string
+      descricao: string
+      banner: string
+      is_active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["cursos"]>
+    composites: {}
+  }
+
+
+  type cursosGetPayload<S extends boolean | null | undefined | cursosDefaultArgs> = $Result.GetResult<Prisma.$cursosPayload, S>
+
+  type cursosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<cursosFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CursosCountAggregateInputType | true
+    }
+
+  export interface cursosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['cursos'], meta: { name: 'cursos' } }
+    /**
+     * Find zero or one Cursos that matches the filter.
+     * @param {cursosFindUniqueArgs} args - Arguments to find a Cursos
+     * @example
+     * // Get one Cursos
+     * const cursos = await prisma.cursos.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends cursosFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosFindUniqueArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Cursos that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {cursosFindUniqueOrThrowArgs} args - Arguments to find a Cursos
+     * @example
+     * // Get one Cursos
+     * const cursos = await prisma.cursos.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends cursosFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Cursos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosFindFirstArgs} args - Arguments to find a Cursos
+     * @example
+     * // Get one Cursos
+     * const cursos = await prisma.cursos.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends cursosFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosFindFirstArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Cursos that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosFindFirstOrThrowArgs} args - Arguments to find a Cursos
+     * @example
+     * // Get one Cursos
+     * const cursos = await prisma.cursos.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends cursosFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Cursos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Cursos
+     * const cursos = await prisma.cursos.findMany()
+     * 
+     * // Get first 10 Cursos
+     * const cursos = await prisma.cursos.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cursosWithIdOnly = await prisma.cursos.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends cursosFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Cursos.
+     * @param {cursosCreateArgs} args - Arguments to create a Cursos.
+     * @example
+     * // Create one Cursos
+     * const Cursos = await prisma.cursos.create({
+     *   data: {
+     *     // ... data to create a Cursos
+     *   }
+     * })
+     * 
+    **/
+    create<T extends cursosCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosCreateArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Cursos.
+     *     @param {cursosCreateManyArgs} args - Arguments to create many Cursos.
+     *     @example
+     *     // Create many Cursos
+     *     const cursos = await prisma.cursos.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends cursosCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Cursos.
+     * @param {cursosDeleteArgs} args - Arguments to delete one Cursos.
+     * @example
+     * // Delete one Cursos
+     * const Cursos = await prisma.cursos.delete({
+     *   where: {
+     *     // ... filter to delete one Cursos
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends cursosDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosDeleteArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Cursos.
+     * @param {cursosUpdateArgs} args - Arguments to update one Cursos.
+     * @example
+     * // Update one Cursos
+     * const cursos = await prisma.cursos.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends cursosUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosUpdateArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Cursos.
+     * @param {cursosDeleteManyArgs} args - Arguments to filter Cursos to delete.
+     * @example
+     * // Delete a few Cursos
+     * const { count } = await prisma.cursos.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends cursosDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, cursosDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Cursos
+     * const cursos = await prisma.cursos.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends cursosUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Cursos.
+     * @param {cursosUpsertArgs} args - Arguments to update or create a Cursos.
+     * @example
+     * // Update or create a Cursos
+     * const cursos = await prisma.cursos.upsert({
+     *   create: {
+     *     // ... data to create a Cursos
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Cursos we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends cursosUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, cursosUpsertArgs<ExtArgs>>
+    ): Prisma__cursosClient<$Result.GetResult<Prisma.$cursosPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosCountArgs} args - Arguments to filter Cursos to count.
+     * @example
+     * // Count the number of Cursos
+     * const count = await prisma.cursos.count({
+     *   where: {
+     *     // ... the filter for the Cursos we want to count
+     *   }
+     * })
+    **/
+    count<T extends cursosCountArgs>(
+      args?: Subset<T, cursosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CursosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CursosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CursosAggregateArgs>(args: Subset<T, CursosAggregateArgs>): Prisma.PrismaPromise<GetCursosAggregateType<T>>
+
+    /**
+     * Group by Cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {cursosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends cursosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: cursosGroupByArgs['orderBy'] }
+        : { orderBy?: cursosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, cursosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCursosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the cursos model
+   */
+  readonly fields: cursosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for cursos.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__cursosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the cursos model
+   */ 
+  interface cursosFieldRefs {
+    readonly id: FieldRef<"cursos", 'String'>
+    readonly nome: FieldRef<"cursos", 'String'>
+    readonly descricao: FieldRef<"cursos", 'String'>
+    readonly banner: FieldRef<"cursos", 'String'>
+    readonly is_active: FieldRef<"cursos", 'Boolean'>
+    readonly createdAt: FieldRef<"cursos", 'DateTime'>
+    readonly updatedAt: FieldRef<"cursos", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * cursos findUnique
+   */
+  export type cursosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter, which cursos to fetch.
+     */
+    where: cursosWhereUniqueInput
+  }
+
+
+  /**
+   * cursos findUniqueOrThrow
+   */
+  export type cursosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter, which cursos to fetch.
+     */
+    where: cursosWhereUniqueInput
+  }
+
+
+  /**
+   * cursos findFirst
+   */
+  export type cursosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter, which cursos to fetch.
+     */
+    where?: cursosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cursos to fetch.
+     */
+    orderBy?: cursosOrderByWithRelationInput | cursosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for cursos.
+     */
+    cursor?: cursosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of cursos.
+     */
+    distinct?: CursosScalarFieldEnum | CursosScalarFieldEnum[]
+  }
+
+
+  /**
+   * cursos findFirstOrThrow
+   */
+  export type cursosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter, which cursos to fetch.
+     */
+    where?: cursosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cursos to fetch.
+     */
+    orderBy?: cursosOrderByWithRelationInput | cursosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for cursos.
+     */
+    cursor?: cursosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of cursos.
+     */
+    distinct?: CursosScalarFieldEnum | CursosScalarFieldEnum[]
+  }
+
+
+  /**
+   * cursos findMany
+   */
+  export type cursosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter, which cursos to fetch.
+     */
+    where?: cursosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of cursos to fetch.
+     */
+    orderBy?: cursosOrderByWithRelationInput | cursosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing cursos.
+     */
+    cursor?: cursosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` cursos.
+     */
+    skip?: number
+    distinct?: CursosScalarFieldEnum | CursosScalarFieldEnum[]
+  }
+
+
+  /**
+   * cursos create
+   */
+  export type cursosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * The data needed to create a cursos.
+     */
+    data: XOR<cursosCreateInput, cursosUncheckedCreateInput>
+  }
+
+
+  /**
+   * cursos createMany
+   */
+  export type cursosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many cursos.
+     */
+    data: cursosCreateManyInput | cursosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * cursos update
+   */
+  export type cursosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * The data needed to update a cursos.
+     */
+    data: XOR<cursosUpdateInput, cursosUncheckedUpdateInput>
+    /**
+     * Choose, which cursos to update.
+     */
+    where: cursosWhereUniqueInput
+  }
+
+
+  /**
+   * cursos updateMany
+   */
+  export type cursosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update cursos.
+     */
+    data: XOR<cursosUpdateManyMutationInput, cursosUncheckedUpdateManyInput>
+    /**
+     * Filter which cursos to update
+     */
+    where?: cursosWhereInput
+  }
+
+
+  /**
+   * cursos upsert
+   */
+  export type cursosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * The filter to search for the cursos to update in case it exists.
+     */
+    where: cursosWhereUniqueInput
+    /**
+     * In case the cursos found by the `where` argument doesn't exist, create a new cursos with this data.
+     */
+    create: XOR<cursosCreateInput, cursosUncheckedCreateInput>
+    /**
+     * In case the cursos was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<cursosUpdateInput, cursosUncheckedUpdateInput>
+  }
+
+
+  /**
+   * cursos delete
+   */
+  export type cursosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+    /**
+     * Filter which cursos to delete.
+     */
+    where: cursosWhereUniqueInput
+  }
+
+
+  /**
+   * cursos deleteMany
+   */
+  export type cursosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which cursos to delete
+     */
+    where?: cursosWhereInput
+  }
+
+
+  /**
+   * cursos without action
+   */
+  export type cursosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cursos
+     */
+    select?: cursosSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model aulas
+   */
+
+  export type AggregateAulas = {
+    _count: AulasCountAggregateOutputType | null
+    _min: AulasMinAggregateOutputType | null
+    _max: AulasMaxAggregateOutputType | null
+  }
+
+  export type AulasMinAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    descricao: string | null
+    is_active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AulasMaxAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    descricao: string | null
+    is_active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AulasCountAggregateOutputType = {
+    id: number
+    nome: number
+    descricao: number
+    is_active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AulasMinAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AulasMaxAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AulasCountAggregateInputType = {
+    id?: true
+    nome?: true
+    descricao?: true
+    is_active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AulasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which aulas to aggregate.
+     */
+    where?: aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas to fetch.
+     */
+    orderBy?: aulasOrderByWithRelationInput | aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned aulas
+    **/
+    _count?: true | AulasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AulasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AulasMaxAggregateInputType
+  }
+
+  export type GetAulasAggregateType<T extends AulasAggregateArgs> = {
+        [P in keyof T & keyof AggregateAulas]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAulas[P]>
+      : GetScalarType<T[P], AggregateAulas[P]>
+  }
+
+
+
+
+  export type aulasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: aulasWhereInput
+    orderBy?: aulasOrderByWithAggregationInput | aulasOrderByWithAggregationInput[]
+    by: AulasScalarFieldEnum[] | AulasScalarFieldEnum
+    having?: aulasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AulasCountAggregateInputType | true
+    _min?: AulasMinAggregateInputType
+    _max?: AulasMaxAggregateInputType
+  }
+
+  export type AulasGroupByOutputType = {
+    id: string
+    nome: string
+    descricao: string
+    is_active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AulasCountAggregateOutputType | null
+    _min: AulasMinAggregateOutputType | null
+    _max: AulasMaxAggregateOutputType | null
+  }
+
+  type GetAulasGroupByPayload<T extends aulasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AulasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AulasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AulasGroupByOutputType[P]>
+            : GetScalarType<T[P], AulasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type aulasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    is_active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aulas"]>
+
+  export type aulasSelectScalar = {
+    id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    is_active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $aulasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "aulas"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nome: string
+      descricao: string
+      is_active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aulas"]>
+    composites: {}
+  }
+
+
+  type aulasGetPayload<S extends boolean | null | undefined | aulasDefaultArgs> = $Result.GetResult<Prisma.$aulasPayload, S>
+
+  type aulasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<aulasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AulasCountAggregateInputType | true
+    }
+
+  export interface aulasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['aulas'], meta: { name: 'aulas' } }
+    /**
+     * Find zero or one Aulas that matches the filter.
+     * @param {aulasFindUniqueArgs} args - Arguments to find a Aulas
+     * @example
+     * // Get one Aulas
+     * const aulas = await prisma.aulas.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends aulasFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasFindUniqueArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Aulas that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {aulasFindUniqueOrThrowArgs} args - Arguments to find a Aulas
+     * @example
+     * // Get one Aulas
+     * const aulas = await prisma.aulas.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends aulasFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Aulas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasFindFirstArgs} args - Arguments to find a Aulas
+     * @example
+     * // Get one Aulas
+     * const aulas = await prisma.aulas.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends aulasFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasFindFirstArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Aulas that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasFindFirstOrThrowArgs} args - Arguments to find a Aulas
+     * @example
+     * // Get one Aulas
+     * const aulas = await prisma.aulas.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends aulasFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Aulas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Aulas
+     * const aulas = await prisma.aulas.findMany()
+     * 
+     * // Get first 10 Aulas
+     * const aulas = await prisma.aulas.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aulasWithIdOnly = await prisma.aulas.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends aulasFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Aulas.
+     * @param {aulasCreateArgs} args - Arguments to create a Aulas.
+     * @example
+     * // Create one Aulas
+     * const Aulas = await prisma.aulas.create({
+     *   data: {
+     *     // ... data to create a Aulas
+     *   }
+     * })
+     * 
+    **/
+    create<T extends aulasCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasCreateArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Aulas.
+     *     @param {aulasCreateManyArgs} args - Arguments to create many Aulas.
+     *     @example
+     *     // Create many Aulas
+     *     const aulas = await prisma.aulas.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends aulasCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Aulas.
+     * @param {aulasDeleteArgs} args - Arguments to delete one Aulas.
+     * @example
+     * // Delete one Aulas
+     * const Aulas = await prisma.aulas.delete({
+     *   where: {
+     *     // ... filter to delete one Aulas
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends aulasDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasDeleteArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Aulas.
+     * @param {aulasUpdateArgs} args - Arguments to update one Aulas.
+     * @example
+     * // Update one Aulas
+     * const aulas = await prisma.aulas.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends aulasUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasUpdateArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Aulas.
+     * @param {aulasDeleteManyArgs} args - Arguments to filter Aulas to delete.
+     * @example
+     * // Delete a few Aulas
+     * const { count } = await prisma.aulas.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends aulasDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulasDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Aulas
+     * const aulas = await prisma.aulas.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends aulasUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Aulas.
+     * @param {aulasUpsertArgs} args - Arguments to update or create a Aulas.
+     * @example
+     * // Update or create a Aulas
+     * const aulas = await prisma.aulas.upsert({
+     *   create: {
+     *     // ... data to create a Aulas
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Aulas we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends aulasUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, aulasUpsertArgs<ExtArgs>>
+    ): Prisma__aulasClient<$Result.GetResult<Prisma.$aulasPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasCountArgs} args - Arguments to filter Aulas to count.
+     * @example
+     * // Count the number of Aulas
+     * const count = await prisma.aulas.count({
+     *   where: {
+     *     // ... the filter for the Aulas we want to count
+     *   }
+     * })
+    **/
+    count<T extends aulasCountArgs>(
+      args?: Subset<T, aulasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AulasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AulasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AulasAggregateArgs>(args: Subset<T, AulasAggregateArgs>): Prisma.PrismaPromise<GetAulasAggregateType<T>>
+
+    /**
+     * Group by Aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends aulasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: aulasGroupByArgs['orderBy'] }
+        : { orderBy?: aulasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, aulasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAulasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the aulas model
+   */
+  readonly fields: aulasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for aulas.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__aulasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the aulas model
+   */ 
+  interface aulasFieldRefs {
+    readonly id: FieldRef<"aulas", 'String'>
+    readonly nome: FieldRef<"aulas", 'String'>
+    readonly descricao: FieldRef<"aulas", 'String'>
+    readonly is_active: FieldRef<"aulas", 'Boolean'>
+    readonly createdAt: FieldRef<"aulas", 'DateTime'>
+    readonly updatedAt: FieldRef<"aulas", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * aulas findUnique
+   */
+  export type aulasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas to fetch.
+     */
+    where: aulasWhereUniqueInput
+  }
+
+
+  /**
+   * aulas findUniqueOrThrow
+   */
+  export type aulasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas to fetch.
+     */
+    where: aulasWhereUniqueInput
+  }
+
+
+  /**
+   * aulas findFirst
+   */
+  export type aulasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas to fetch.
+     */
+    where?: aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas to fetch.
+     */
+    orderBy?: aulasOrderByWithRelationInput | aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for aulas.
+     */
+    cursor?: aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of aulas.
+     */
+    distinct?: AulasScalarFieldEnum | AulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas findFirstOrThrow
+   */
+  export type aulasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas to fetch.
+     */
+    where?: aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas to fetch.
+     */
+    orderBy?: aulasOrderByWithRelationInput | aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for aulas.
+     */
+    cursor?: aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of aulas.
+     */
+    distinct?: AulasScalarFieldEnum | AulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas findMany
+   */
+  export type aulasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas to fetch.
+     */
+    where?: aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas to fetch.
+     */
+    orderBy?: aulasOrderByWithRelationInput | aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing aulas.
+     */
+    cursor?: aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas.
+     */
+    skip?: number
+    distinct?: AulasScalarFieldEnum | AulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas create
+   */
+  export type aulasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * The data needed to create a aulas.
+     */
+    data: XOR<aulasCreateInput, aulasUncheckedCreateInput>
+  }
+
+
+  /**
+   * aulas createMany
+   */
+  export type aulasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many aulas.
+     */
+    data: aulasCreateManyInput | aulasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * aulas update
+   */
+  export type aulasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * The data needed to update a aulas.
+     */
+    data: XOR<aulasUpdateInput, aulasUncheckedUpdateInput>
+    /**
+     * Choose, which aulas to update.
+     */
+    where: aulasWhereUniqueInput
+  }
+
+
+  /**
+   * aulas updateMany
+   */
+  export type aulasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update aulas.
+     */
+    data: XOR<aulasUpdateManyMutationInput, aulasUncheckedUpdateManyInput>
+    /**
+     * Filter which aulas to update
+     */
+    where?: aulasWhereInput
+  }
+
+
+  /**
+   * aulas upsert
+   */
+  export type aulasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * The filter to search for the aulas to update in case it exists.
+     */
+    where: aulasWhereUniqueInput
+    /**
+     * In case the aulas found by the `where` argument doesn't exist, create a new aulas with this data.
+     */
+    create: XOR<aulasCreateInput, aulasUncheckedCreateInput>
+    /**
+     * In case the aulas was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<aulasUpdateInput, aulasUncheckedUpdateInput>
+  }
+
+
+  /**
+   * aulas delete
+   */
+  export type aulasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+    /**
+     * Filter which aulas to delete.
+     */
+    where: aulasWhereUniqueInput
+  }
+
+
+  /**
+   * aulas deleteMany
+   */
+  export type aulasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which aulas to delete
+     */
+    where?: aulasWhereInput
+  }
+
+
+  /**
+   * aulas without action
+   */
+  export type aulasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas
+     */
+    select?: aulasSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model aulas_conteudo
+   */
+
+  export type AggregateAulas_conteudo = {
+    _count: Aulas_conteudoCountAggregateOutputType | null
+    _min: Aulas_conteudoMinAggregateOutputType | null
+    _max: Aulas_conteudoMaxAggregateOutputType | null
+  }
+
+  export type Aulas_conteudoMinAggregateOutputType = {
+    id: string | null
+    id_curso: string | null
+    nome: string | null
+    conteudo: Buffer | null
+  }
+
+  export type Aulas_conteudoMaxAggregateOutputType = {
+    id: string | null
+    id_curso: string | null
+    nome: string | null
+    conteudo: Buffer | null
+  }
+
+  export type Aulas_conteudoCountAggregateOutputType = {
+    id: number
+    id_curso: number
+    nome: number
+    conteudo: number
+    _all: number
+  }
+
+
+  export type Aulas_conteudoMinAggregateInputType = {
+    id?: true
+    id_curso?: true
+    nome?: true
+    conteudo?: true
+  }
+
+  export type Aulas_conteudoMaxAggregateInputType = {
+    id?: true
+    id_curso?: true
+    nome?: true
+    conteudo?: true
+  }
+
+  export type Aulas_conteudoCountAggregateInputType = {
+    id?: true
+    id_curso?: true
+    nome?: true
+    conteudo?: true
+    _all?: true
+  }
+
+  export type Aulas_conteudoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which aulas_conteudo to aggregate.
+     */
+    where?: aulas_conteudoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas_conteudos to fetch.
+     */
+    orderBy?: aulas_conteudoOrderByWithRelationInput | aulas_conteudoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: aulas_conteudoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas_conteudos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas_conteudos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned aulas_conteudos
+    **/
+    _count?: true | Aulas_conteudoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Aulas_conteudoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Aulas_conteudoMaxAggregateInputType
+  }
+
+  export type GetAulas_conteudoAggregateType<T extends Aulas_conteudoAggregateArgs> = {
+        [P in keyof T & keyof AggregateAulas_conteudo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAulas_conteudo[P]>
+      : GetScalarType<T[P], AggregateAulas_conteudo[P]>
+  }
+
+
+
+
+  export type aulas_conteudoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: aulas_conteudoWhereInput
+    orderBy?: aulas_conteudoOrderByWithAggregationInput | aulas_conteudoOrderByWithAggregationInput[]
+    by: Aulas_conteudoScalarFieldEnum[] | Aulas_conteudoScalarFieldEnum
+    having?: aulas_conteudoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Aulas_conteudoCountAggregateInputType | true
+    _min?: Aulas_conteudoMinAggregateInputType
+    _max?: Aulas_conteudoMaxAggregateInputType
+  }
+
+  export type Aulas_conteudoGroupByOutputType = {
+    id: string
+    id_curso: string
+    nome: string
+    conteudo: Buffer
+    _count: Aulas_conteudoCountAggregateOutputType | null
+    _min: Aulas_conteudoMinAggregateOutputType | null
+    _max: Aulas_conteudoMaxAggregateOutputType | null
+  }
+
+  type GetAulas_conteudoGroupByPayload<T extends aulas_conteudoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Aulas_conteudoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Aulas_conteudoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Aulas_conteudoGroupByOutputType[P]>
+            : GetScalarType<T[P], Aulas_conteudoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type aulas_conteudoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_curso?: boolean
+    nome?: boolean
+    conteudo?: boolean
+  }, ExtArgs["result"]["aulas_conteudo"]>
+
+  export type aulas_conteudoSelectScalar = {
+    id?: boolean
+    id_curso?: boolean
+    nome?: boolean
+    conteudo?: boolean
+  }
+
+
+  export type $aulas_conteudoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "aulas_conteudo"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      id_curso: string
+      nome: string
+      conteudo: Buffer
+    }, ExtArgs["result"]["aulas_conteudo"]>
+    composites: {}
+  }
+
+
+  type aulas_conteudoGetPayload<S extends boolean | null | undefined | aulas_conteudoDefaultArgs> = $Result.GetResult<Prisma.$aulas_conteudoPayload, S>
+
+  type aulas_conteudoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<aulas_conteudoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Aulas_conteudoCountAggregateInputType | true
+    }
+
+  export interface aulas_conteudoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['aulas_conteudo'], meta: { name: 'aulas_conteudo' } }
+    /**
+     * Find zero or one Aulas_conteudo that matches the filter.
+     * @param {aulas_conteudoFindUniqueArgs} args - Arguments to find a Aulas_conteudo
+     * @example
+     * // Get one Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends aulas_conteudoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoFindUniqueArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Aulas_conteudo that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {aulas_conteudoFindUniqueOrThrowArgs} args - Arguments to find a Aulas_conteudo
+     * @example
+     * // Get one Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends aulas_conteudoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Aulas_conteudo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoFindFirstArgs} args - Arguments to find a Aulas_conteudo
+     * @example
+     * // Get one Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends aulas_conteudoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoFindFirstArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Aulas_conteudo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoFindFirstOrThrowArgs} args - Arguments to find a Aulas_conteudo
+     * @example
+     * // Get one Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends aulas_conteudoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Aulas_conteudos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Aulas_conteudos
+     * const aulas_conteudos = await prisma.aulas_conteudo.findMany()
+     * 
+     * // Get first 10 Aulas_conteudos
+     * const aulas_conteudos = await prisma.aulas_conteudo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aulas_conteudoWithIdOnly = await prisma.aulas_conteudo.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends aulas_conteudoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Aulas_conteudo.
+     * @param {aulas_conteudoCreateArgs} args - Arguments to create a Aulas_conteudo.
+     * @example
+     * // Create one Aulas_conteudo
+     * const Aulas_conteudo = await prisma.aulas_conteudo.create({
+     *   data: {
+     *     // ... data to create a Aulas_conteudo
+     *   }
+     * })
+     * 
+    **/
+    create<T extends aulas_conteudoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoCreateArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Aulas_conteudos.
+     *     @param {aulas_conteudoCreateManyArgs} args - Arguments to create many Aulas_conteudos.
+     *     @example
+     *     // Create many Aulas_conteudos
+     *     const aulas_conteudo = await prisma.aulas_conteudo.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends aulas_conteudoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Aulas_conteudo.
+     * @param {aulas_conteudoDeleteArgs} args - Arguments to delete one Aulas_conteudo.
+     * @example
+     * // Delete one Aulas_conteudo
+     * const Aulas_conteudo = await prisma.aulas_conteudo.delete({
+     *   where: {
+     *     // ... filter to delete one Aulas_conteudo
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends aulas_conteudoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoDeleteArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Aulas_conteudo.
+     * @param {aulas_conteudoUpdateArgs} args - Arguments to update one Aulas_conteudo.
+     * @example
+     * // Update one Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends aulas_conteudoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoUpdateArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Aulas_conteudos.
+     * @param {aulas_conteudoDeleteManyArgs} args - Arguments to filter Aulas_conteudos to delete.
+     * @example
+     * // Delete a few Aulas_conteudos
+     * const { count } = await prisma.aulas_conteudo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends aulas_conteudoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, aulas_conteudoDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Aulas_conteudos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Aulas_conteudos
+     * const aulas_conteudo = await prisma.aulas_conteudo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends aulas_conteudoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Aulas_conteudo.
+     * @param {aulas_conteudoUpsertArgs} args - Arguments to update or create a Aulas_conteudo.
+     * @example
+     * // Update or create a Aulas_conteudo
+     * const aulas_conteudo = await prisma.aulas_conteudo.upsert({
+     *   create: {
+     *     // ... data to create a Aulas_conteudo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Aulas_conteudo we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends aulas_conteudoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, aulas_conteudoUpsertArgs<ExtArgs>>
+    ): Prisma__aulas_conteudoClient<$Result.GetResult<Prisma.$aulas_conteudoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Aulas_conteudos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoCountArgs} args - Arguments to filter Aulas_conteudos to count.
+     * @example
+     * // Count the number of Aulas_conteudos
+     * const count = await prisma.aulas_conteudo.count({
+     *   where: {
+     *     // ... the filter for the Aulas_conteudos we want to count
+     *   }
+     * })
+    **/
+    count<T extends aulas_conteudoCountArgs>(
+      args?: Subset<T, aulas_conteudoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Aulas_conteudoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Aulas_conteudo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Aulas_conteudoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Aulas_conteudoAggregateArgs>(args: Subset<T, Aulas_conteudoAggregateArgs>): Prisma.PrismaPromise<GetAulas_conteudoAggregateType<T>>
+
+    /**
+     * Group by Aulas_conteudo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {aulas_conteudoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends aulas_conteudoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: aulas_conteudoGroupByArgs['orderBy'] }
+        : { orderBy?: aulas_conteudoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, aulas_conteudoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAulas_conteudoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the aulas_conteudo model
+   */
+  readonly fields: aulas_conteudoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for aulas_conteudo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__aulas_conteudoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the aulas_conteudo model
+   */ 
+  interface aulas_conteudoFieldRefs {
+    readonly id: FieldRef<"aulas_conteudo", 'String'>
+    readonly id_curso: FieldRef<"aulas_conteudo", 'String'>
+    readonly nome: FieldRef<"aulas_conteudo", 'String'>
+    readonly conteudo: FieldRef<"aulas_conteudo", 'Bytes'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * aulas_conteudo findUnique
+   */
+  export type aulas_conteudoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas_conteudo to fetch.
+     */
+    where: aulas_conteudoWhereUniqueInput
+  }
+
+
+  /**
+   * aulas_conteudo findUniqueOrThrow
+   */
+  export type aulas_conteudoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas_conteudo to fetch.
+     */
+    where: aulas_conteudoWhereUniqueInput
+  }
+
+
+  /**
+   * aulas_conteudo findFirst
+   */
+  export type aulas_conteudoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas_conteudo to fetch.
+     */
+    where?: aulas_conteudoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas_conteudos to fetch.
+     */
+    orderBy?: aulas_conteudoOrderByWithRelationInput | aulas_conteudoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for aulas_conteudos.
+     */
+    cursor?: aulas_conteudoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas_conteudos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas_conteudos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of aulas_conteudos.
+     */
+    distinct?: Aulas_conteudoScalarFieldEnum | Aulas_conteudoScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas_conteudo findFirstOrThrow
+   */
+  export type aulas_conteudoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas_conteudo to fetch.
+     */
+    where?: aulas_conteudoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas_conteudos to fetch.
+     */
+    orderBy?: aulas_conteudoOrderByWithRelationInput | aulas_conteudoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for aulas_conteudos.
+     */
+    cursor?: aulas_conteudoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas_conteudos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas_conteudos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of aulas_conteudos.
+     */
+    distinct?: Aulas_conteudoScalarFieldEnum | Aulas_conteudoScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas_conteudo findMany
+   */
+  export type aulas_conteudoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter, which aulas_conteudos to fetch.
+     */
+    where?: aulas_conteudoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of aulas_conteudos to fetch.
+     */
+    orderBy?: aulas_conteudoOrderByWithRelationInput | aulas_conteudoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing aulas_conteudos.
+     */
+    cursor?: aulas_conteudoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` aulas_conteudos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` aulas_conteudos.
+     */
+    skip?: number
+    distinct?: Aulas_conteudoScalarFieldEnum | Aulas_conteudoScalarFieldEnum[]
+  }
+
+
+  /**
+   * aulas_conteudo create
+   */
+  export type aulas_conteudoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * The data needed to create a aulas_conteudo.
+     */
+    data: XOR<aulas_conteudoCreateInput, aulas_conteudoUncheckedCreateInput>
+  }
+
+
+  /**
+   * aulas_conteudo createMany
+   */
+  export type aulas_conteudoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many aulas_conteudos.
+     */
+    data: aulas_conteudoCreateManyInput | aulas_conteudoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * aulas_conteudo update
+   */
+  export type aulas_conteudoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * The data needed to update a aulas_conteudo.
+     */
+    data: XOR<aulas_conteudoUpdateInput, aulas_conteudoUncheckedUpdateInput>
+    /**
+     * Choose, which aulas_conteudo to update.
+     */
+    where: aulas_conteudoWhereUniqueInput
+  }
+
+
+  /**
+   * aulas_conteudo updateMany
+   */
+  export type aulas_conteudoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update aulas_conteudos.
+     */
+    data: XOR<aulas_conteudoUpdateManyMutationInput, aulas_conteudoUncheckedUpdateManyInput>
+    /**
+     * Filter which aulas_conteudos to update
+     */
+    where?: aulas_conteudoWhereInput
+  }
+
+
+  /**
+   * aulas_conteudo upsert
+   */
+  export type aulas_conteudoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * The filter to search for the aulas_conteudo to update in case it exists.
+     */
+    where: aulas_conteudoWhereUniqueInput
+    /**
+     * In case the aulas_conteudo found by the `where` argument doesn't exist, create a new aulas_conteudo with this data.
+     */
+    create: XOR<aulas_conteudoCreateInput, aulas_conteudoUncheckedCreateInput>
+    /**
+     * In case the aulas_conteudo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<aulas_conteudoUpdateInput, aulas_conteudoUncheckedUpdateInput>
+  }
+
+
+  /**
+   * aulas_conteudo delete
+   */
+  export type aulas_conteudoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+    /**
+     * Filter which aulas_conteudo to delete.
+     */
+    where: aulas_conteudoWhereUniqueInput
+  }
+
+
+  /**
+   * aulas_conteudo deleteMany
+   */
+  export type aulas_conteudoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which aulas_conteudos to delete
+     */
+    where?: aulas_conteudoWhereInput
+  }
+
+
+  /**
+   * aulas_conteudo without action
+   */
+  export type aulas_conteudoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the aulas_conteudo
+     */
+    select?: aulas_conteudoSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model relation_curso_aulas
+   */
+
+  export type AggregateRelation_curso_aulas = {
+    _count: Relation_curso_aulasCountAggregateOutputType | null
+    _min: Relation_curso_aulasMinAggregateOutputType | null
+    _max: Relation_curso_aulasMaxAggregateOutputType | null
+  }
+
+  export type Relation_curso_aulasMinAggregateOutputType = {
+    id: string | null
+    id_curso: string | null
+    id_aula: string | null
+  }
+
+  export type Relation_curso_aulasMaxAggregateOutputType = {
+    id: string | null
+    id_curso: string | null
+    id_aula: string | null
+  }
+
+  export type Relation_curso_aulasCountAggregateOutputType = {
+    id: number
+    id_curso: number
+    id_aula: number
+    _all: number
+  }
+
+
+  export type Relation_curso_aulasMinAggregateInputType = {
+    id?: true
+    id_curso?: true
+    id_aula?: true
+  }
+
+  export type Relation_curso_aulasMaxAggregateInputType = {
+    id?: true
+    id_curso?: true
+    id_aula?: true
+  }
+
+  export type Relation_curso_aulasCountAggregateInputType = {
+    id?: true
+    id_curso?: true
+    id_aula?: true
+    _all?: true
+  }
+
+  export type Relation_curso_aulasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which relation_curso_aulas to aggregate.
+     */
+    where?: relation_curso_aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_curso_aulas to fetch.
+     */
+    orderBy?: relation_curso_aulasOrderByWithRelationInput | relation_curso_aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: relation_curso_aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_curso_aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_curso_aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned relation_curso_aulas
+    **/
+    _count?: true | Relation_curso_aulasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Relation_curso_aulasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Relation_curso_aulasMaxAggregateInputType
+  }
+
+  export type GetRelation_curso_aulasAggregateType<T extends Relation_curso_aulasAggregateArgs> = {
+        [P in keyof T & keyof AggregateRelation_curso_aulas]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRelation_curso_aulas[P]>
+      : GetScalarType<T[P], AggregateRelation_curso_aulas[P]>
+  }
+
+
+
+
+  export type relation_curso_aulasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: relation_curso_aulasWhereInput
+    orderBy?: relation_curso_aulasOrderByWithAggregationInput | relation_curso_aulasOrderByWithAggregationInput[]
+    by: Relation_curso_aulasScalarFieldEnum[] | Relation_curso_aulasScalarFieldEnum
+    having?: relation_curso_aulasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Relation_curso_aulasCountAggregateInputType | true
+    _min?: Relation_curso_aulasMinAggregateInputType
+    _max?: Relation_curso_aulasMaxAggregateInputType
+  }
+
+  export type Relation_curso_aulasGroupByOutputType = {
+    id: string
+    id_curso: string
+    id_aula: string
+    _count: Relation_curso_aulasCountAggregateOutputType | null
+    _min: Relation_curso_aulasMinAggregateOutputType | null
+    _max: Relation_curso_aulasMaxAggregateOutputType | null
+  }
+
+  type GetRelation_curso_aulasGroupByPayload<T extends relation_curso_aulasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Relation_curso_aulasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Relation_curso_aulasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Relation_curso_aulasGroupByOutputType[P]>
+            : GetScalarType<T[P], Relation_curso_aulasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type relation_curso_aulasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_curso?: boolean
+    id_aula?: boolean
+  }, ExtArgs["result"]["relation_curso_aulas"]>
+
+  export type relation_curso_aulasSelectScalar = {
+    id?: boolean
+    id_curso?: boolean
+    id_aula?: boolean
+  }
+
+
+  export type $relation_curso_aulasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "relation_curso_aulas"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      id_curso: string
+      id_aula: string
+    }, ExtArgs["result"]["relation_curso_aulas"]>
+    composites: {}
+  }
+
+
+  type relation_curso_aulasGetPayload<S extends boolean | null | undefined | relation_curso_aulasDefaultArgs> = $Result.GetResult<Prisma.$relation_curso_aulasPayload, S>
+
+  type relation_curso_aulasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<relation_curso_aulasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Relation_curso_aulasCountAggregateInputType | true
+    }
+
+  export interface relation_curso_aulasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['relation_curso_aulas'], meta: { name: 'relation_curso_aulas' } }
+    /**
+     * Find zero or one Relation_curso_aulas that matches the filter.
+     * @param {relation_curso_aulasFindUniqueArgs} args - Arguments to find a Relation_curso_aulas
+     * @example
+     * // Get one Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends relation_curso_aulasFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasFindUniqueArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Relation_curso_aulas that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {relation_curso_aulasFindUniqueOrThrowArgs} args - Arguments to find a Relation_curso_aulas
+     * @example
+     * // Get one Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends relation_curso_aulasFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Relation_curso_aulas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasFindFirstArgs} args - Arguments to find a Relation_curso_aulas
+     * @example
+     * // Get one Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends relation_curso_aulasFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasFindFirstArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Relation_curso_aulas that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasFindFirstOrThrowArgs} args - Arguments to find a Relation_curso_aulas
+     * @example
+     * // Get one Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends relation_curso_aulasFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Relation_curso_aulas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findMany()
+     * 
+     * // Get first 10 Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const relation_curso_aulasWithIdOnly = await prisma.relation_curso_aulas.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends relation_curso_aulasFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Relation_curso_aulas.
+     * @param {relation_curso_aulasCreateArgs} args - Arguments to create a Relation_curso_aulas.
+     * @example
+     * // Create one Relation_curso_aulas
+     * const Relation_curso_aulas = await prisma.relation_curso_aulas.create({
+     *   data: {
+     *     // ... data to create a Relation_curso_aulas
+     *   }
+     * })
+     * 
+    **/
+    create<T extends relation_curso_aulasCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasCreateArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Relation_curso_aulas.
+     *     @param {relation_curso_aulasCreateManyArgs} args - Arguments to create many Relation_curso_aulas.
+     *     @example
+     *     // Create many Relation_curso_aulas
+     *     const relation_curso_aulas = await prisma.relation_curso_aulas.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends relation_curso_aulasCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Relation_curso_aulas.
+     * @param {relation_curso_aulasDeleteArgs} args - Arguments to delete one Relation_curso_aulas.
+     * @example
+     * // Delete one Relation_curso_aulas
+     * const Relation_curso_aulas = await prisma.relation_curso_aulas.delete({
+     *   where: {
+     *     // ... filter to delete one Relation_curso_aulas
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends relation_curso_aulasDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasDeleteArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Relation_curso_aulas.
+     * @param {relation_curso_aulasUpdateArgs} args - Arguments to update one Relation_curso_aulas.
+     * @example
+     * // Update one Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends relation_curso_aulasUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasUpdateArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Relation_curso_aulas.
+     * @param {relation_curso_aulasDeleteManyArgs} args - Arguments to filter Relation_curso_aulas to delete.
+     * @example
+     * // Delete a few Relation_curso_aulas
+     * const { count } = await prisma.relation_curso_aulas.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends relation_curso_aulasDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_curso_aulasDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Relation_curso_aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends relation_curso_aulasUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Relation_curso_aulas.
+     * @param {relation_curso_aulasUpsertArgs} args - Arguments to update or create a Relation_curso_aulas.
+     * @example
+     * // Update or create a Relation_curso_aulas
+     * const relation_curso_aulas = await prisma.relation_curso_aulas.upsert({
+     *   create: {
+     *     // ... data to create a Relation_curso_aulas
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Relation_curso_aulas we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends relation_curso_aulasUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_curso_aulasUpsertArgs<ExtArgs>>
+    ): Prisma__relation_curso_aulasClient<$Result.GetResult<Prisma.$relation_curso_aulasPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Relation_curso_aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasCountArgs} args - Arguments to filter Relation_curso_aulas to count.
+     * @example
+     * // Count the number of Relation_curso_aulas
+     * const count = await prisma.relation_curso_aulas.count({
+     *   where: {
+     *     // ... the filter for the Relation_curso_aulas we want to count
+     *   }
+     * })
+    **/
+    count<T extends relation_curso_aulasCountArgs>(
+      args?: Subset<T, relation_curso_aulasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Relation_curso_aulasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Relation_curso_aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Relation_curso_aulasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Relation_curso_aulasAggregateArgs>(args: Subset<T, Relation_curso_aulasAggregateArgs>): Prisma.PrismaPromise<GetRelation_curso_aulasAggregateType<T>>
+
+    /**
+     * Group by Relation_curso_aulas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_curso_aulasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends relation_curso_aulasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: relation_curso_aulasGroupByArgs['orderBy'] }
+        : { orderBy?: relation_curso_aulasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, relation_curso_aulasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRelation_curso_aulasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the relation_curso_aulas model
+   */
+  readonly fields: relation_curso_aulasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for relation_curso_aulas.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__relation_curso_aulasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the relation_curso_aulas model
+   */ 
+  interface relation_curso_aulasFieldRefs {
+    readonly id: FieldRef<"relation_curso_aulas", 'String'>
+    readonly id_curso: FieldRef<"relation_curso_aulas", 'String'>
+    readonly id_aula: FieldRef<"relation_curso_aulas", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * relation_curso_aulas findUnique
+   */
+  export type relation_curso_aulasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_curso_aulas to fetch.
+     */
+    where: relation_curso_aulasWhereUniqueInput
+  }
+
+
+  /**
+   * relation_curso_aulas findUniqueOrThrow
+   */
+  export type relation_curso_aulasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_curso_aulas to fetch.
+     */
+    where: relation_curso_aulasWhereUniqueInput
+  }
+
+
+  /**
+   * relation_curso_aulas findFirst
+   */
+  export type relation_curso_aulasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_curso_aulas to fetch.
+     */
+    where?: relation_curso_aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_curso_aulas to fetch.
+     */
+    orderBy?: relation_curso_aulasOrderByWithRelationInput | relation_curso_aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for relation_curso_aulas.
+     */
+    cursor?: relation_curso_aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_curso_aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_curso_aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of relation_curso_aulas.
+     */
+    distinct?: Relation_curso_aulasScalarFieldEnum | Relation_curso_aulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_curso_aulas findFirstOrThrow
+   */
+  export type relation_curso_aulasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_curso_aulas to fetch.
+     */
+    where?: relation_curso_aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_curso_aulas to fetch.
+     */
+    orderBy?: relation_curso_aulasOrderByWithRelationInput | relation_curso_aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for relation_curso_aulas.
+     */
+    cursor?: relation_curso_aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_curso_aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_curso_aulas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of relation_curso_aulas.
+     */
+    distinct?: Relation_curso_aulasScalarFieldEnum | Relation_curso_aulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_curso_aulas findMany
+   */
+  export type relation_curso_aulasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_curso_aulas to fetch.
+     */
+    where?: relation_curso_aulasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_curso_aulas to fetch.
+     */
+    orderBy?: relation_curso_aulasOrderByWithRelationInput | relation_curso_aulasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing relation_curso_aulas.
+     */
+    cursor?: relation_curso_aulasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_curso_aulas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_curso_aulas.
+     */
+    skip?: number
+    distinct?: Relation_curso_aulasScalarFieldEnum | Relation_curso_aulasScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_curso_aulas create
+   */
+  export type relation_curso_aulasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * The data needed to create a relation_curso_aulas.
+     */
+    data: XOR<relation_curso_aulasCreateInput, relation_curso_aulasUncheckedCreateInput>
+  }
+
+
+  /**
+   * relation_curso_aulas createMany
+   */
+  export type relation_curso_aulasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many relation_curso_aulas.
+     */
+    data: relation_curso_aulasCreateManyInput | relation_curso_aulasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * relation_curso_aulas update
+   */
+  export type relation_curso_aulasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * The data needed to update a relation_curso_aulas.
+     */
+    data: XOR<relation_curso_aulasUpdateInput, relation_curso_aulasUncheckedUpdateInput>
+    /**
+     * Choose, which relation_curso_aulas to update.
+     */
+    where: relation_curso_aulasWhereUniqueInput
+  }
+
+
+  /**
+   * relation_curso_aulas updateMany
+   */
+  export type relation_curso_aulasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update relation_curso_aulas.
+     */
+    data: XOR<relation_curso_aulasUpdateManyMutationInput, relation_curso_aulasUncheckedUpdateManyInput>
+    /**
+     * Filter which relation_curso_aulas to update
+     */
+    where?: relation_curso_aulasWhereInput
+  }
+
+
+  /**
+   * relation_curso_aulas upsert
+   */
+  export type relation_curso_aulasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * The filter to search for the relation_curso_aulas to update in case it exists.
+     */
+    where: relation_curso_aulasWhereUniqueInput
+    /**
+     * In case the relation_curso_aulas found by the `where` argument doesn't exist, create a new relation_curso_aulas with this data.
+     */
+    create: XOR<relation_curso_aulasCreateInput, relation_curso_aulasUncheckedCreateInput>
+    /**
+     * In case the relation_curso_aulas was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<relation_curso_aulasUpdateInput, relation_curso_aulasUncheckedUpdateInput>
+  }
+
+
+  /**
+   * relation_curso_aulas delete
+   */
+  export type relation_curso_aulasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+    /**
+     * Filter which relation_curso_aulas to delete.
+     */
+    where: relation_curso_aulasWhereUniqueInput
+  }
+
+
+  /**
+   * relation_curso_aulas deleteMany
+   */
+  export type relation_curso_aulasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which relation_curso_aulas to delete
+     */
+    where?: relation_curso_aulasWhereInput
+  }
+
+
+  /**
+   * relation_curso_aulas without action
+   */
+  export type relation_curso_aulasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_curso_aulas
+     */
+    select?: relation_curso_aulasSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model relation_aluno_curso
+   */
+
+  export type AggregateRelation_aluno_curso = {
+    _count: Relation_aluno_cursoCountAggregateOutputType | null
+    _min: Relation_aluno_cursoMinAggregateOutputType | null
+    _max: Relation_aluno_cursoMaxAggregateOutputType | null
+  }
+
+  export type Relation_aluno_cursoMinAggregateOutputType = {
+    id: string | null
+    id_aluno: string | null
+    id_curso: string | null
+    status: $Enums.StatusEnum | null
+  }
+
+  export type Relation_aluno_cursoMaxAggregateOutputType = {
+    id: string | null
+    id_aluno: string | null
+    id_curso: string | null
+    status: $Enums.StatusEnum | null
+  }
+
+  export type Relation_aluno_cursoCountAggregateOutputType = {
+    id: number
+    id_aluno: number
+    id_curso: number
+    status: number
+    _all: number
+  }
+
+
+  export type Relation_aluno_cursoMinAggregateInputType = {
+    id?: true
+    id_aluno?: true
+    id_curso?: true
+    status?: true
+  }
+
+  export type Relation_aluno_cursoMaxAggregateInputType = {
+    id?: true
+    id_aluno?: true
+    id_curso?: true
+    status?: true
+  }
+
+  export type Relation_aluno_cursoCountAggregateInputType = {
+    id?: true
+    id_aluno?: true
+    id_curso?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Relation_aluno_cursoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which relation_aluno_curso to aggregate.
+     */
+    where?: relation_aluno_cursoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_aluno_cursos to fetch.
+     */
+    orderBy?: relation_aluno_cursoOrderByWithRelationInput | relation_aluno_cursoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: relation_aluno_cursoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_aluno_cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_aluno_cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned relation_aluno_cursos
+    **/
+    _count?: true | Relation_aluno_cursoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Relation_aluno_cursoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Relation_aluno_cursoMaxAggregateInputType
+  }
+
+  export type GetRelation_aluno_cursoAggregateType<T extends Relation_aluno_cursoAggregateArgs> = {
+        [P in keyof T & keyof AggregateRelation_aluno_curso]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRelation_aluno_curso[P]>
+      : GetScalarType<T[P], AggregateRelation_aluno_curso[P]>
+  }
+
+
+
+
+  export type relation_aluno_cursoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: relation_aluno_cursoWhereInput
+    orderBy?: relation_aluno_cursoOrderByWithAggregationInput | relation_aluno_cursoOrderByWithAggregationInput[]
+    by: Relation_aluno_cursoScalarFieldEnum[] | Relation_aluno_cursoScalarFieldEnum
+    having?: relation_aluno_cursoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Relation_aluno_cursoCountAggregateInputType | true
+    _min?: Relation_aluno_cursoMinAggregateInputType
+    _max?: Relation_aluno_cursoMaxAggregateInputType
+  }
+
+  export type Relation_aluno_cursoGroupByOutputType = {
+    id: string
+    id_aluno: string
+    id_curso: string
+    status: $Enums.StatusEnum
+    _count: Relation_aluno_cursoCountAggregateOutputType | null
+    _min: Relation_aluno_cursoMinAggregateOutputType | null
+    _max: Relation_aluno_cursoMaxAggregateOutputType | null
+  }
+
+  type GetRelation_aluno_cursoGroupByPayload<T extends relation_aluno_cursoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Relation_aluno_cursoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Relation_aluno_cursoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Relation_aluno_cursoGroupByOutputType[P]>
+            : GetScalarType<T[P], Relation_aluno_cursoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type relation_aluno_cursoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_aluno?: boolean
+    id_curso?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["relation_aluno_curso"]>
+
+  export type relation_aluno_cursoSelectScalar = {
+    id?: boolean
+    id_aluno?: boolean
+    id_curso?: boolean
+    status?: boolean
+  }
+
+
+  export type $relation_aluno_cursoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "relation_aluno_curso"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      id_aluno: string
+      id_curso: string
+      status: $Enums.StatusEnum
+    }, ExtArgs["result"]["relation_aluno_curso"]>
+    composites: {}
+  }
+
+
+  type relation_aluno_cursoGetPayload<S extends boolean | null | undefined | relation_aluno_cursoDefaultArgs> = $Result.GetResult<Prisma.$relation_aluno_cursoPayload, S>
+
+  type relation_aluno_cursoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<relation_aluno_cursoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Relation_aluno_cursoCountAggregateInputType | true
+    }
+
+  export interface relation_aluno_cursoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['relation_aluno_curso'], meta: { name: 'relation_aluno_curso' } }
+    /**
+     * Find zero or one Relation_aluno_curso that matches the filter.
+     * @param {relation_aluno_cursoFindUniqueArgs} args - Arguments to find a Relation_aluno_curso
+     * @example
+     * // Get one Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends relation_aluno_cursoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoFindUniqueArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Relation_aluno_curso that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {relation_aluno_cursoFindUniqueOrThrowArgs} args - Arguments to find a Relation_aluno_curso
+     * @example
+     * // Get one Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends relation_aluno_cursoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Relation_aluno_curso that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoFindFirstArgs} args - Arguments to find a Relation_aluno_curso
+     * @example
+     * // Get one Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends relation_aluno_cursoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoFindFirstArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Relation_aluno_curso that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoFindFirstOrThrowArgs} args - Arguments to find a Relation_aluno_curso
+     * @example
+     * // Get one Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends relation_aluno_cursoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Relation_aluno_cursos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Relation_aluno_cursos
+     * const relation_aluno_cursos = await prisma.relation_aluno_curso.findMany()
+     * 
+     * // Get first 10 Relation_aluno_cursos
+     * const relation_aluno_cursos = await prisma.relation_aluno_curso.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const relation_aluno_cursoWithIdOnly = await prisma.relation_aluno_curso.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends relation_aluno_cursoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Relation_aluno_curso.
+     * @param {relation_aluno_cursoCreateArgs} args - Arguments to create a Relation_aluno_curso.
+     * @example
+     * // Create one Relation_aluno_curso
+     * const Relation_aluno_curso = await prisma.relation_aluno_curso.create({
+     *   data: {
+     *     // ... data to create a Relation_aluno_curso
+     *   }
+     * })
+     * 
+    **/
+    create<T extends relation_aluno_cursoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoCreateArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Relation_aluno_cursos.
+     *     @param {relation_aluno_cursoCreateManyArgs} args - Arguments to create many Relation_aluno_cursos.
+     *     @example
+     *     // Create many Relation_aluno_cursos
+     *     const relation_aluno_curso = await prisma.relation_aluno_curso.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends relation_aluno_cursoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Relation_aluno_curso.
+     * @param {relation_aluno_cursoDeleteArgs} args - Arguments to delete one Relation_aluno_curso.
+     * @example
+     * // Delete one Relation_aluno_curso
+     * const Relation_aluno_curso = await prisma.relation_aluno_curso.delete({
+     *   where: {
+     *     // ... filter to delete one Relation_aluno_curso
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends relation_aluno_cursoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoDeleteArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Relation_aluno_curso.
+     * @param {relation_aluno_cursoUpdateArgs} args - Arguments to update one Relation_aluno_curso.
+     * @example
+     * // Update one Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends relation_aluno_cursoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoUpdateArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Relation_aluno_cursos.
+     * @param {relation_aluno_cursoDeleteManyArgs} args - Arguments to filter Relation_aluno_cursos to delete.
+     * @example
+     * // Delete a few Relation_aluno_cursos
+     * const { count } = await prisma.relation_aluno_curso.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends relation_aluno_cursoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, relation_aluno_cursoDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Relation_aluno_cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Relation_aluno_cursos
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends relation_aluno_cursoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Relation_aluno_curso.
+     * @param {relation_aluno_cursoUpsertArgs} args - Arguments to update or create a Relation_aluno_curso.
+     * @example
+     * // Update or create a Relation_aluno_curso
+     * const relation_aluno_curso = await prisma.relation_aluno_curso.upsert({
+     *   create: {
+     *     // ... data to create a Relation_aluno_curso
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Relation_aluno_curso we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends relation_aluno_cursoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, relation_aluno_cursoUpsertArgs<ExtArgs>>
+    ): Prisma__relation_aluno_cursoClient<$Result.GetResult<Prisma.$relation_aluno_cursoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Relation_aluno_cursos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoCountArgs} args - Arguments to filter Relation_aluno_cursos to count.
+     * @example
+     * // Count the number of Relation_aluno_cursos
+     * const count = await prisma.relation_aluno_curso.count({
+     *   where: {
+     *     // ... the filter for the Relation_aluno_cursos we want to count
+     *   }
+     * })
+    **/
+    count<T extends relation_aluno_cursoCountArgs>(
+      args?: Subset<T, relation_aluno_cursoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Relation_aluno_cursoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Relation_aluno_curso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Relation_aluno_cursoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Relation_aluno_cursoAggregateArgs>(args: Subset<T, Relation_aluno_cursoAggregateArgs>): Prisma.PrismaPromise<GetRelation_aluno_cursoAggregateType<T>>
+
+    /**
+     * Group by Relation_aluno_curso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {relation_aluno_cursoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends relation_aluno_cursoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: relation_aluno_cursoGroupByArgs['orderBy'] }
+        : { orderBy?: relation_aluno_cursoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, relation_aluno_cursoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRelation_aluno_cursoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the relation_aluno_curso model
+   */
+  readonly fields: relation_aluno_cursoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for relation_aluno_curso.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__relation_aluno_cursoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the relation_aluno_curso model
+   */ 
+  interface relation_aluno_cursoFieldRefs {
+    readonly id: FieldRef<"relation_aluno_curso", 'String'>
+    readonly id_aluno: FieldRef<"relation_aluno_curso", 'String'>
+    readonly id_curso: FieldRef<"relation_aluno_curso", 'String'>
+    readonly status: FieldRef<"relation_aluno_curso", 'StatusEnum'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * relation_aluno_curso findUnique
+   */
+  export type relation_aluno_cursoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_aluno_curso to fetch.
+     */
+    where: relation_aluno_cursoWhereUniqueInput
+  }
+
+
+  /**
+   * relation_aluno_curso findUniqueOrThrow
+   */
+  export type relation_aluno_cursoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_aluno_curso to fetch.
+     */
+    where: relation_aluno_cursoWhereUniqueInput
+  }
+
+
+  /**
+   * relation_aluno_curso findFirst
+   */
+  export type relation_aluno_cursoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_aluno_curso to fetch.
+     */
+    where?: relation_aluno_cursoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_aluno_cursos to fetch.
+     */
+    orderBy?: relation_aluno_cursoOrderByWithRelationInput | relation_aluno_cursoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for relation_aluno_cursos.
+     */
+    cursor?: relation_aluno_cursoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_aluno_cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_aluno_cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of relation_aluno_cursos.
+     */
+    distinct?: Relation_aluno_cursoScalarFieldEnum | Relation_aluno_cursoScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_aluno_curso findFirstOrThrow
+   */
+  export type relation_aluno_cursoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_aluno_curso to fetch.
+     */
+    where?: relation_aluno_cursoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_aluno_cursos to fetch.
+     */
+    orderBy?: relation_aluno_cursoOrderByWithRelationInput | relation_aluno_cursoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for relation_aluno_cursos.
+     */
+    cursor?: relation_aluno_cursoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_aluno_cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_aluno_cursos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of relation_aluno_cursos.
+     */
+    distinct?: Relation_aluno_cursoScalarFieldEnum | Relation_aluno_cursoScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_aluno_curso findMany
+   */
+  export type relation_aluno_cursoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter, which relation_aluno_cursos to fetch.
+     */
+    where?: relation_aluno_cursoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of relation_aluno_cursos to fetch.
+     */
+    orderBy?: relation_aluno_cursoOrderByWithRelationInput | relation_aluno_cursoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing relation_aluno_cursos.
+     */
+    cursor?: relation_aluno_cursoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` relation_aluno_cursos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` relation_aluno_cursos.
+     */
+    skip?: number
+    distinct?: Relation_aluno_cursoScalarFieldEnum | Relation_aluno_cursoScalarFieldEnum[]
+  }
+
+
+  /**
+   * relation_aluno_curso create
+   */
+  export type relation_aluno_cursoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * The data needed to create a relation_aluno_curso.
+     */
+    data: XOR<relation_aluno_cursoCreateInput, relation_aluno_cursoUncheckedCreateInput>
+  }
+
+
+  /**
+   * relation_aluno_curso createMany
+   */
+  export type relation_aluno_cursoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many relation_aluno_cursos.
+     */
+    data: relation_aluno_cursoCreateManyInput | relation_aluno_cursoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * relation_aluno_curso update
+   */
+  export type relation_aluno_cursoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * The data needed to update a relation_aluno_curso.
+     */
+    data: XOR<relation_aluno_cursoUpdateInput, relation_aluno_cursoUncheckedUpdateInput>
+    /**
+     * Choose, which relation_aluno_curso to update.
+     */
+    where: relation_aluno_cursoWhereUniqueInput
+  }
+
+
+  /**
+   * relation_aluno_curso updateMany
+   */
+  export type relation_aluno_cursoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update relation_aluno_cursos.
+     */
+    data: XOR<relation_aluno_cursoUpdateManyMutationInput, relation_aluno_cursoUncheckedUpdateManyInput>
+    /**
+     * Filter which relation_aluno_cursos to update
+     */
+    where?: relation_aluno_cursoWhereInput
+  }
+
+
+  /**
+   * relation_aluno_curso upsert
+   */
+  export type relation_aluno_cursoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * The filter to search for the relation_aluno_curso to update in case it exists.
+     */
+    where: relation_aluno_cursoWhereUniqueInput
+    /**
+     * In case the relation_aluno_curso found by the `where` argument doesn't exist, create a new relation_aluno_curso with this data.
+     */
+    create: XOR<relation_aluno_cursoCreateInput, relation_aluno_cursoUncheckedCreateInput>
+    /**
+     * In case the relation_aluno_curso was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<relation_aluno_cursoUpdateInput, relation_aluno_cursoUncheckedUpdateInput>
+  }
+
+
+  /**
+   * relation_aluno_curso delete
+   */
+  export type relation_aluno_cursoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+    /**
+     * Filter which relation_aluno_curso to delete.
+     */
+    where: relation_aluno_cursoWhereUniqueInput
+  }
+
+
+  /**
+   * relation_aluno_curso deleteMany
+   */
+  export type relation_aluno_cursoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which relation_aluno_cursos to delete
+     */
+    where?: relation_aluno_cursoWhereInput
+  }
+
+
+  /**
+   * relation_aluno_curso without action
+   */
+  export type relation_aluno_cursoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the relation_aluno_curso
+     */
+    select?: relation_aluno_cursoSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -2741,7 +7531,8 @@ export namespace Prisma {
     nome: 'nome',
     email: 'email',
     senha: 'senha',
-    status: 'status',
+    is_active: 'is_active',
+    userType: 'userType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2754,12 +7545,67 @@ export namespace Prisma {
     nome: 'nome',
     email: 'email',
     senha: 'senha',
-    status: 'status',
+    is_active: 'is_active',
+    userType: 'userType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type ProfessoresScalarFieldEnum = (typeof ProfessoresScalarFieldEnum)[keyof typeof ProfessoresScalarFieldEnum]
+
+
+  export const CursosScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome',
+    descricao: 'descricao',
+    banner: 'banner',
+    is_active: 'is_active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CursosScalarFieldEnum = (typeof CursosScalarFieldEnum)[keyof typeof CursosScalarFieldEnum]
+
+
+  export const AulasScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome',
+    descricao: 'descricao',
+    is_active: 'is_active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AulasScalarFieldEnum = (typeof AulasScalarFieldEnum)[keyof typeof AulasScalarFieldEnum]
+
+
+  export const Aulas_conteudoScalarFieldEnum: {
+    id: 'id',
+    id_curso: 'id_curso',
+    nome: 'nome',
+    conteudo: 'conteudo'
+  };
+
+  export type Aulas_conteudoScalarFieldEnum = (typeof Aulas_conteudoScalarFieldEnum)[keyof typeof Aulas_conteudoScalarFieldEnum]
+
+
+  export const Relation_curso_aulasScalarFieldEnum: {
+    id: 'id',
+    id_curso: 'id_curso',
+    id_aula: 'id_aula'
+  };
+
+  export type Relation_curso_aulasScalarFieldEnum = (typeof Relation_curso_aulasScalarFieldEnum)[keyof typeof Relation_curso_aulasScalarFieldEnum]
+
+
+  export const Relation_aluno_cursoScalarFieldEnum: {
+    id: 'id',
+    id_aluno: 'id_aluno',
+    id_curso: 'id_curso',
+    status: 'status'
+  };
+
+  export type Relation_aluno_cursoScalarFieldEnum = (typeof Relation_aluno_cursoScalarFieldEnum)[keyof typeof Relation_aluno_cursoScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2797,6 +7643,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Bytes'
+   */
+  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusEnum'
+   */
+  export type EnumStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusEnum'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -2814,7 +7674,8 @@ export namespace Prisma {
     nome?: StringFilter<"alunos"> | string
     email?: StringFilter<"alunos"> | string
     senha?: StringFilter<"alunos"> | string
-    status?: BoolFilter<"alunos"> | boolean
+    is_active?: BoolFilter<"alunos"> | boolean
+    userType?: StringFilter<"alunos"> | string
     createdAt?: DateTimeFilter<"alunos"> | Date | string
     updatedAt?: DateTimeFilter<"alunos"> | Date | string
   }
@@ -2824,7 +7685,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2837,7 +7699,8 @@ export namespace Prisma {
     NOT?: alunosWhereInput | alunosWhereInput[]
     nome?: StringFilter<"alunos"> | string
     senha?: StringFilter<"alunos"> | string
-    status?: BoolFilter<"alunos"> | boolean
+    is_active?: BoolFilter<"alunos"> | boolean
+    userType?: StringFilter<"alunos"> | string
     createdAt?: DateTimeFilter<"alunos"> | Date | string
     updatedAt?: DateTimeFilter<"alunos"> | Date | string
   }, "id" | "id" | "email">
@@ -2847,7 +7710,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: alunosCountOrderByAggregateInput
@@ -2863,7 +7727,8 @@ export namespace Prisma {
     nome?: StringWithAggregatesFilter<"alunos"> | string
     email?: StringWithAggregatesFilter<"alunos"> | string
     senha?: StringWithAggregatesFilter<"alunos"> | string
-    status?: BoolWithAggregatesFilter<"alunos"> | boolean
+    is_active?: BoolWithAggregatesFilter<"alunos"> | boolean
+    userType?: StringWithAggregatesFilter<"alunos"> | string
     createdAt?: DateTimeWithAggregatesFilter<"alunos"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"alunos"> | Date | string
   }
@@ -2876,7 +7741,8 @@ export namespace Prisma {
     nome?: StringFilter<"professores"> | string
     email?: StringFilter<"professores"> | string
     senha?: StringFilter<"professores"> | string
-    status?: BoolFilter<"professores"> | boolean
+    is_active?: BoolFilter<"professores"> | boolean
+    userType?: StringFilter<"professores"> | string
     createdAt?: DateTimeFilter<"professores"> | Date | string
     updatedAt?: DateTimeFilter<"professores"> | Date | string
   }
@@ -2886,7 +7752,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2899,7 +7766,8 @@ export namespace Prisma {
     NOT?: professoresWhereInput | professoresWhereInput[]
     nome?: StringFilter<"professores"> | string
     senha?: StringFilter<"professores"> | string
-    status?: BoolFilter<"professores"> | boolean
+    is_active?: BoolFilter<"professores"> | boolean
+    userType?: StringFilter<"professores"> | string
     createdAt?: DateTimeFilter<"professores"> | Date | string
     updatedAt?: DateTimeFilter<"professores"> | Date | string
   }, "id" | "id" | "email">
@@ -2909,7 +7777,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: professoresCountOrderByAggregateInput
@@ -2925,9 +7794,265 @@ export namespace Prisma {
     nome?: StringWithAggregatesFilter<"professores"> | string
     email?: StringWithAggregatesFilter<"professores"> | string
     senha?: StringWithAggregatesFilter<"professores"> | string
-    status?: BoolWithAggregatesFilter<"professores"> | boolean
+    is_active?: BoolWithAggregatesFilter<"professores"> | boolean
+    userType?: StringWithAggregatesFilter<"professores"> | string
     createdAt?: DateTimeWithAggregatesFilter<"professores"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"professores"> | Date | string
+  }
+
+  export type cursosWhereInput = {
+    AND?: cursosWhereInput | cursosWhereInput[]
+    OR?: cursosWhereInput[]
+    NOT?: cursosWhereInput | cursosWhereInput[]
+    id?: StringFilter<"cursos"> | string
+    nome?: StringFilter<"cursos"> | string
+    descricao?: StringFilter<"cursos"> | string
+    banner?: StringFilter<"cursos"> | string
+    is_active?: BoolFilter<"cursos"> | boolean
+    createdAt?: DateTimeFilter<"cursos"> | Date | string
+    updatedAt?: DateTimeFilter<"cursos"> | Date | string
+  }
+
+  export type cursosOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    banner?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type cursosWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: cursosWhereInput | cursosWhereInput[]
+    OR?: cursosWhereInput[]
+    NOT?: cursosWhereInput | cursosWhereInput[]
+    nome?: StringFilter<"cursos"> | string
+    descricao?: StringFilter<"cursos"> | string
+    banner?: StringFilter<"cursos"> | string
+    is_active?: BoolFilter<"cursos"> | boolean
+    createdAt?: DateTimeFilter<"cursos"> | Date | string
+    updatedAt?: DateTimeFilter<"cursos"> | Date | string
+  }, "id" | "id">
+
+  export type cursosOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    banner?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: cursosCountOrderByAggregateInput
+    _max?: cursosMaxOrderByAggregateInput
+    _min?: cursosMinOrderByAggregateInput
+  }
+
+  export type cursosScalarWhereWithAggregatesInput = {
+    AND?: cursosScalarWhereWithAggregatesInput | cursosScalarWhereWithAggregatesInput[]
+    OR?: cursosScalarWhereWithAggregatesInput[]
+    NOT?: cursosScalarWhereWithAggregatesInput | cursosScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"cursos"> | string
+    nome?: StringWithAggregatesFilter<"cursos"> | string
+    descricao?: StringWithAggregatesFilter<"cursos"> | string
+    banner?: StringWithAggregatesFilter<"cursos"> | string
+    is_active?: BoolWithAggregatesFilter<"cursos"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"cursos"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"cursos"> | Date | string
+  }
+
+  export type aulasWhereInput = {
+    AND?: aulasWhereInput | aulasWhereInput[]
+    OR?: aulasWhereInput[]
+    NOT?: aulasWhereInput | aulasWhereInput[]
+    id?: StringFilter<"aulas"> | string
+    nome?: StringFilter<"aulas"> | string
+    descricao?: StringFilter<"aulas"> | string
+    is_active?: BoolFilter<"aulas"> | boolean
+    createdAt?: DateTimeFilter<"aulas"> | Date | string
+    updatedAt?: DateTimeFilter<"aulas"> | Date | string
+  }
+
+  export type aulasOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type aulasWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: aulasWhereInput | aulasWhereInput[]
+    OR?: aulasWhereInput[]
+    NOT?: aulasWhereInput | aulasWhereInput[]
+    nome?: StringFilter<"aulas"> | string
+    descricao?: StringFilter<"aulas"> | string
+    is_active?: BoolFilter<"aulas"> | boolean
+    createdAt?: DateTimeFilter<"aulas"> | Date | string
+    updatedAt?: DateTimeFilter<"aulas"> | Date | string
+  }, "id" | "id">
+
+  export type aulasOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: aulasCountOrderByAggregateInput
+    _max?: aulasMaxOrderByAggregateInput
+    _min?: aulasMinOrderByAggregateInput
+  }
+
+  export type aulasScalarWhereWithAggregatesInput = {
+    AND?: aulasScalarWhereWithAggregatesInput | aulasScalarWhereWithAggregatesInput[]
+    OR?: aulasScalarWhereWithAggregatesInput[]
+    NOT?: aulasScalarWhereWithAggregatesInput | aulasScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"aulas"> | string
+    nome?: StringWithAggregatesFilter<"aulas"> | string
+    descricao?: StringWithAggregatesFilter<"aulas"> | string
+    is_active?: BoolWithAggregatesFilter<"aulas"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"aulas"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"aulas"> | Date | string
+  }
+
+  export type aulas_conteudoWhereInput = {
+    AND?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
+    OR?: aulas_conteudoWhereInput[]
+    NOT?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
+    id?: StringFilter<"aulas_conteudo"> | string
+    id_curso?: StringFilter<"aulas_conteudo"> | string
+    nome?: StringFilter<"aulas_conteudo"> | string
+    conteudo?: BytesFilter<"aulas_conteudo"> | Buffer
+  }
+
+  export type aulas_conteudoOrderByWithRelationInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    nome?: SortOrder
+    conteudo?: SortOrder
+  }
+
+  export type aulas_conteudoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
+    OR?: aulas_conteudoWhereInput[]
+    NOT?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
+    id_curso?: StringFilter<"aulas_conteudo"> | string
+    nome?: StringFilter<"aulas_conteudo"> | string
+    conteudo?: BytesFilter<"aulas_conteudo"> | Buffer
+  }, "id" | "id">
+
+  export type aulas_conteudoOrderByWithAggregationInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    nome?: SortOrder
+    conteudo?: SortOrder
+    _count?: aulas_conteudoCountOrderByAggregateInput
+    _max?: aulas_conteudoMaxOrderByAggregateInput
+    _min?: aulas_conteudoMinOrderByAggregateInput
+  }
+
+  export type aulas_conteudoScalarWhereWithAggregatesInput = {
+    AND?: aulas_conteudoScalarWhereWithAggregatesInput | aulas_conteudoScalarWhereWithAggregatesInput[]
+    OR?: aulas_conteudoScalarWhereWithAggregatesInput[]
+    NOT?: aulas_conteudoScalarWhereWithAggregatesInput | aulas_conteudoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"aulas_conteudo"> | string
+    id_curso?: StringWithAggregatesFilter<"aulas_conteudo"> | string
+    nome?: StringWithAggregatesFilter<"aulas_conteudo"> | string
+    conteudo?: BytesWithAggregatesFilter<"aulas_conteudo"> | Buffer
+  }
+
+  export type relation_curso_aulasWhereInput = {
+    AND?: relation_curso_aulasWhereInput | relation_curso_aulasWhereInput[]
+    OR?: relation_curso_aulasWhereInput[]
+    NOT?: relation_curso_aulasWhereInput | relation_curso_aulasWhereInput[]
+    id?: StringFilter<"relation_curso_aulas"> | string
+    id_curso?: StringFilter<"relation_curso_aulas"> | string
+    id_aula?: StringFilter<"relation_curso_aulas"> | string
+  }
+
+  export type relation_curso_aulasOrderByWithRelationInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    id_aula?: SortOrder
+  }
+
+  export type relation_curso_aulasWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: relation_curso_aulasWhereInput | relation_curso_aulasWhereInput[]
+    OR?: relation_curso_aulasWhereInput[]
+    NOT?: relation_curso_aulasWhereInput | relation_curso_aulasWhereInput[]
+    id_curso?: StringFilter<"relation_curso_aulas"> | string
+    id_aula?: StringFilter<"relation_curso_aulas"> | string
+  }, "id" | "id">
+
+  export type relation_curso_aulasOrderByWithAggregationInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    id_aula?: SortOrder
+    _count?: relation_curso_aulasCountOrderByAggregateInput
+    _max?: relation_curso_aulasMaxOrderByAggregateInput
+    _min?: relation_curso_aulasMinOrderByAggregateInput
+  }
+
+  export type relation_curso_aulasScalarWhereWithAggregatesInput = {
+    AND?: relation_curso_aulasScalarWhereWithAggregatesInput | relation_curso_aulasScalarWhereWithAggregatesInput[]
+    OR?: relation_curso_aulasScalarWhereWithAggregatesInput[]
+    NOT?: relation_curso_aulasScalarWhereWithAggregatesInput | relation_curso_aulasScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"relation_curso_aulas"> | string
+    id_curso?: StringWithAggregatesFilter<"relation_curso_aulas"> | string
+    id_aula?: StringWithAggregatesFilter<"relation_curso_aulas"> | string
+  }
+
+  export type relation_aluno_cursoWhereInput = {
+    AND?: relation_aluno_cursoWhereInput | relation_aluno_cursoWhereInput[]
+    OR?: relation_aluno_cursoWhereInput[]
+    NOT?: relation_aluno_cursoWhereInput | relation_aluno_cursoWhereInput[]
+    id?: StringFilter<"relation_aluno_curso"> | string
+    id_aluno?: StringFilter<"relation_aluno_curso"> | string
+    id_curso?: StringFilter<"relation_aluno_curso"> | string
+    status?: EnumStatusEnumFilter<"relation_aluno_curso"> | $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoOrderByWithRelationInput = {
+    id?: SortOrder
+    id_aluno?: SortOrder
+    id_curso?: SortOrder
+    status?: SortOrder
+  }
+
+  export type relation_aluno_cursoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: relation_aluno_cursoWhereInput | relation_aluno_cursoWhereInput[]
+    OR?: relation_aluno_cursoWhereInput[]
+    NOT?: relation_aluno_cursoWhereInput | relation_aluno_cursoWhereInput[]
+    id_aluno?: StringFilter<"relation_aluno_curso"> | string
+    id_curso?: StringFilter<"relation_aluno_curso"> | string
+    status?: EnumStatusEnumFilter<"relation_aluno_curso"> | $Enums.StatusEnum
+  }, "id" | "id">
+
+  export type relation_aluno_cursoOrderByWithAggregationInput = {
+    id?: SortOrder
+    id_aluno?: SortOrder
+    id_curso?: SortOrder
+    status?: SortOrder
+    _count?: relation_aluno_cursoCountOrderByAggregateInput
+    _max?: relation_aluno_cursoMaxOrderByAggregateInput
+    _min?: relation_aluno_cursoMinOrderByAggregateInput
+  }
+
+  export type relation_aluno_cursoScalarWhereWithAggregatesInput = {
+    AND?: relation_aluno_cursoScalarWhereWithAggregatesInput | relation_aluno_cursoScalarWhereWithAggregatesInput[]
+    OR?: relation_aluno_cursoScalarWhereWithAggregatesInput[]
+    NOT?: relation_aluno_cursoScalarWhereWithAggregatesInput | relation_aluno_cursoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"relation_aluno_curso"> | string
+    id_aluno?: StringWithAggregatesFilter<"relation_aluno_curso"> | string
+    id_curso?: StringWithAggregatesFilter<"relation_aluno_curso"> | string
+    status?: EnumStatusEnumWithAggregatesFilter<"relation_aluno_curso"> | $Enums.StatusEnum
   }
 
   export type alunosCreateInput = {
@@ -2935,7 +8060,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2945,7 +8071,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2955,7 +8082,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2965,7 +8093,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2975,7 +8104,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2985,7 +8115,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2995,7 +8126,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3005,7 +8137,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3015,7 +8148,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3025,7 +8159,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3035,7 +8170,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3045,7 +8181,8 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
-    status?: boolean
+    is_active?: boolean
+    userType: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3055,7 +8192,8 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3065,9 +8203,283 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    userType?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type cursosCreateInput = {
+    id: string
+    nome: string
+    descricao: string
+    banner: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type cursosUncheckedCreateInput = {
+    id: string
+    nome: string
+    descricao: string
+    banner: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type cursosUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    banner?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type cursosUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    banner?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type cursosCreateManyInput = {
+    id: string
+    nome: string
+    descricao: string
+    banner: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type cursosUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    banner?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type cursosUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    banner?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type aulasCreateInput = {
+    id: string
+    nome: string
+    descricao: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type aulasUncheckedCreateInput = {
+    id: string
+    nome: string
+    descricao: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type aulasUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type aulasUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type aulasCreateManyInput = {
+    id: string
+    nome: string
+    descricao: string
+    is_active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type aulasUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type aulasUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type aulas_conteudoCreateInput = {
+    id: string
+    id_curso: string
+    nome: string
+    conteudo: Buffer
+  }
+
+  export type aulas_conteudoUncheckedCreateInput = {
+    id: string
+    id_curso: string
+    nome: string
+    conteudo: Buffer
+  }
+
+  export type aulas_conteudoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    conteudo?: BytesFieldUpdateOperationsInput | Buffer
+  }
+
+  export type aulas_conteudoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    conteudo?: BytesFieldUpdateOperationsInput | Buffer
+  }
+
+  export type aulas_conteudoCreateManyInput = {
+    id: string
+    id_curso: string
+    nome: string
+    conteudo: Buffer
+  }
+
+  export type aulas_conteudoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    conteudo?: BytesFieldUpdateOperationsInput | Buffer
+  }
+
+  export type aulas_conteudoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    conteudo?: BytesFieldUpdateOperationsInput | Buffer
+  }
+
+  export type relation_curso_aulasCreateInput = {
+    id: string
+    id_curso: string
+    id_aula: string
+  }
+
+  export type relation_curso_aulasUncheckedCreateInput = {
+    id: string
+    id_curso: string
+    id_aula: string
+  }
+
+  export type relation_curso_aulasUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type relation_curso_aulasUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type relation_curso_aulasCreateManyInput = {
+    id: string
+    id_curso: string
+    id_aula: string
+  }
+
+  export type relation_curso_aulasUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type relation_curso_aulasUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type relation_aluno_cursoCreateInput = {
+    id: string
+    id_aluno: string
+    id_curso: string
+    status: $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoUncheckedCreateInput = {
+    id: string
+    id_aluno: string
+    id_curso: string
+    status: $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_aluno?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusEnumFieldUpdateOperationsInput | $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_aluno?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusEnumFieldUpdateOperationsInput | $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoCreateManyInput = {
+    id: string
+    id_aluno: string
+    id_curso: string
+    status: $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_aluno?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusEnumFieldUpdateOperationsInput | $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    id_aluno?: StringFieldUpdateOperationsInput | string
+    id_curso?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusEnumFieldUpdateOperationsInput | $Enums.StatusEnum
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3105,7 +8517,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3115,7 +8528,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3125,7 +8539,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3174,7 +8589,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3184,7 +8600,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3194,9 +8611,161 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
-    status?: SortOrder
+    is_active?: SortOrder
+    userType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type cursosCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    banner?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type cursosMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    banner?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type cursosMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    banner?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type aulasCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type aulasMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type aulasMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    is_active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BytesFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel>
+    in?: Buffer[]
+    notIn?: Buffer[]
+    not?: NestedBytesFilter<$PrismaModel> | Buffer
+  }
+
+  export type aulas_conteudoCountOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    nome?: SortOrder
+    conteudo?: SortOrder
+  }
+
+  export type aulas_conteudoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    nome?: SortOrder
+    conteudo?: SortOrder
+  }
+
+  export type aulas_conteudoMinOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    nome?: SortOrder
+    conteudo?: SortOrder
+  }
+
+  export type BytesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel>
+    in?: Buffer[]
+    notIn?: Buffer[]
+    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Buffer
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBytesFilter<$PrismaModel>
+    _max?: NestedBytesFilter<$PrismaModel>
+  }
+
+  export type relation_curso_aulasCountOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    id_aula?: SortOrder
+  }
+
+  export type relation_curso_aulasMaxOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    id_aula?: SortOrder
+  }
+
+  export type relation_curso_aulasMinOrderByAggregateInput = {
+    id?: SortOrder
+    id_curso?: SortOrder
+    id_aula?: SortOrder
+  }
+
+  export type EnumStatusEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusEnum | EnumStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusEnum[]
+    notIn?: $Enums.StatusEnum[]
+    not?: NestedEnumStatusEnumFilter<$PrismaModel> | $Enums.StatusEnum
+  }
+
+  export type relation_aluno_cursoCountOrderByAggregateInput = {
+    id?: SortOrder
+    id_aluno?: SortOrder
+    id_curso?: SortOrder
+    status?: SortOrder
+  }
+
+  export type relation_aluno_cursoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    id_aluno?: SortOrder
+    id_curso?: SortOrder
+    status?: SortOrder
+  }
+
+  export type relation_aluno_cursoMinOrderByAggregateInput = {
+    id?: SortOrder
+    id_aluno?: SortOrder
+    id_curso?: SortOrder
+    status?: SortOrder
+  }
+
+  export type EnumStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusEnum | EnumStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusEnum[]
+    notIn?: $Enums.StatusEnum[]
+    not?: NestedEnumStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.StatusEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusEnumFilter<$PrismaModel>
+    _max?: NestedEnumStatusEnumFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3209,6 +8778,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BytesFieldUpdateOperationsInput = {
+    set?: Buffer
+  }
+
+  export type EnumStatusEnumFieldUpdateOperationsInput = {
+    set?: $Enums.StatusEnum
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3291,6 +8868,40 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBytesFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel>
+    in?: Buffer[]
+    notIn?: Buffer[]
+    not?: NestedBytesFilter<$PrismaModel> | Buffer
+  }
+
+  export type NestedBytesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel>
+    in?: Buffer[]
+    notIn?: Buffer[]
+    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Buffer
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBytesFilter<$PrismaModel>
+    _max?: NestedBytesFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusEnum | EnumStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusEnum[]
+    notIn?: $Enums.StatusEnum[]
+    not?: NestedEnumStatusEnumFilter<$PrismaModel> | $Enums.StatusEnum
+  }
+
+  export type NestedEnumStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusEnum | EnumStatusEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusEnum[]
+    notIn?: $Enums.StatusEnum[]
+    not?: NestedEnumStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.StatusEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusEnumFilter<$PrismaModel>
+    _max?: NestedEnumStatusEnumFilter<$PrismaModel>
+  }
+
 
 
   /**
@@ -3304,6 +8915,26 @@ export namespace Prisma {
      * @deprecated Use professoresDefaultArgs instead
      */
     export type professoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = professoresDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use cursosDefaultArgs instead
+     */
+    export type cursosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = cursosDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use aulasDefaultArgs instead
+     */
+    export type aulasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = aulasDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use aulas_conteudoDefaultArgs instead
+     */
+    export type aulas_conteudoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = aulas_conteudoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use relation_curso_aulasDefaultArgs instead
+     */
+    export type relation_curso_aulasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = relation_curso_aulasDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use relation_aluno_cursoDefaultArgs instead
+     */
+    export type relation_aluno_cursoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = relation_aluno_cursoDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

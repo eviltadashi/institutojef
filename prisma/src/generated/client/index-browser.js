@@ -112,7 +112,8 @@ exports.Prisma.AlunosScalarFieldEnum = {
   nome: 'nome',
   email: 'email',
   senha: 'senha',
-  status: 'status',
+  is_active: 'is_active',
+  userType: 'userType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -122,20 +123,70 @@ exports.Prisma.ProfessoresScalarFieldEnum = {
   nome: 'nome',
   email: 'email',
   senha: 'senha',
-  status: 'status',
+  is_active: 'is_active',
+  userType: 'userType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CursosScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  descricao: 'descricao',
+  banner: 'banner',
+  is_active: 'is_active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AulasScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  descricao: 'descricao',
+  is_active: 'is_active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Aulas_conteudoScalarFieldEnum = {
+  id: 'id',
+  id_curso: 'id_curso',
+  nome: 'nome',
+  conteudo: 'conteudo'
+};
+
+exports.Prisma.Relation_curso_aulasScalarFieldEnum = {
+  id: 'id',
+  id_curso: 'id_curso',
+  id_aula: 'id_aula'
+};
+
+exports.Prisma.Relation_aluno_cursoScalarFieldEnum = {
+  id: 'id',
+  id_aluno: 'id_aluno',
+  id_curso: 'id_curso',
+  status: 'status'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
-
+exports.StatusEnum = exports.$Enums.StatusEnum = {
+  ADICIONADO: 'ADICIONADO',
+  INICIADO: 'INICIADO',
+  CONCLUIDO: 'CONCLUIDO',
+  CANCELADO: 'CANCELADO'
+};
 
 exports.Prisma.ModelName = {
   alunos: 'alunos',
-  professores: 'professores'
+  professores: 'professores',
+  cursos: 'cursos',
+  aulas: 'aulas',
+  aulas_conteudo: 'aulas_conteudo',
+  relation_curso_aulas: 'relation_curso_aulas',
+  relation_aluno_curso: 'relation_aluno_curso'
 };
 
 /**

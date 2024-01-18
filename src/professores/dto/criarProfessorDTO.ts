@@ -13,5 +13,5 @@ export class CriarProfessorDTO{
     @MinLength(6, {message:'Senha deve conter o minimo de 6 caracteres'})
     senha:string;
     
-    status:boolean;
+    is_active:boolean;
 }

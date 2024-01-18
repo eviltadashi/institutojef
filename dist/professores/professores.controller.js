@@ -18,19 +18,20 @@ const professores_repository_1 = require("./professores.repository");
 const criarProfessorDTO_1 = require("./dto/criarProfessorDTO");
 const professores_entity_1 = require("./professores.entity");
 const uuid_1 = require("uuid");
+const atualizarProfessorDTO_1 = require("./dto/atualizarProfessorDTO");
 const bcrypt = require("bcrypt");
 let professoresController = class professoresController {
     constructor(professorRepository) {
         this.professorRepository = professorRepository;
     }
     async createNewProfessor(dados) {
-        console.log('ain, chegou aqui');
         const entity = new professores_entity_1.ProfessoresEntity();
         entity.id = (0, uuid_1.v4)();
         entity.nome = dados.nome;
         entity.email = dados.email;
-        entity.status = dados.status;
+        entity.is_active = dados.is_active;
         entity.senha = await bcrypt.hash(dados.senha, 10);
+        entity.userType = 'professor';
         const result = await this.professorRepository.criarProfessor(entity);
         return {
             "id": result.id,
@@ -45,6 +46,34 @@ let professoresController = class professoresController {
     async getProfessoresById(id) {
         const ret = await this.professorRepository.listarProfessorPorID(id);
         return ret;
+    }
+    async updateProfessor(id, dados) {
+        const entity = new professores_entity_1.ProfessoresEntity();
+        entity.nome = dados.nome;
+        entity.email = dados.email;
+        entity.is_active = dados.is_active;
+        if (dados.senha) {
+            entity.senha = await bcrypt.hash(dados.senha, 10);
+        }
+        const res = await this.professorRepository.atualizaProfessor(id, entity);
+        return {
+            "id": res.id,
+            "nome": res.nome,
+            "email": res.email,
+            "createdAt": res.createdAt,
+            "updatedAt": res.updatedAt,
+            "is_active": res.is_active
+        };
+    }
+    async deleteProfessor(id) {
+        const entity = new professores_entity_1.ProfessoresEntity();
+        entity.is_active = false;
+        const res = await this.professorRepository.atualizaProfessor(id, entity);
+        return {
+            "id": res.id,
+            "email": res.email,
+            "is_active": res.is_active
+        };
     }
 };
 exports.professoresController = professoresController;
@@ -68,6 +97,21 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], professoresController.prototype, "getProfessoresById", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, atualizarProfessorDTO_1.AtualizarProfessorDTO]),
+    __metadata("design:returntype", Promise)
+], professoresController.prototype, "updateProfessor", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], professoresController.prototype, "deleteProfessor", null);
 exports.professoresController = professoresController = __decorate([
     (0, common_1.Controller)('/professores'),
     __metadata("design:paramtypes", [professores_repository_1.professoresRepository])
