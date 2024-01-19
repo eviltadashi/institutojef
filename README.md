@@ -3,9 +3,9 @@
 </p>
 <h1>Instituto J&F - Sistema Teste de Gestão de Cursos</h1>
 
-<p><strong><a href="https://drive.google.com/file/d/1UPvWNt4J4WoXBimQHtZYxrARVp7RGOpY/view?usp=sharing">Draw.io</a></strong></p>
-<p><strong><a href="https://drive.google.com/file/d/1tXbDUKqGTA7ezK5M3f4SsOdFqJGZy-Zt/view?usp=sharing">Insomnia</a></strong></p>
-<p><strong><a href="https://docs.google.com/document/d/1ndtMnIDtERAPBCv-UfVHvnhmU7SM1v4y/edit?usp=sharing&ouid=102416806022669913382&rtpof=true&sd=true">Docx - (word)</a></strong></p>
+<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/draw.png">Draw.io</a></strong></p>
+<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/Insomnia.json">Insomnia</a></strong></p>
+<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/sistemas_curso.docx">Docx - (word)</a></strong></p>
 <hr>
 <p>Boa tarde, segue avaliação prática para vaga de Analista de TI. Informo que serão avaliadas as posições de Pleno e Senior, portanto, iremos considerar, funcionamento, lógica, design de código, utilização do framework, documentação e testes. Cada um desses itens tem uma pontuação individual, o que significa que mesmo que não consiga realizar todo o desenvolvimento, o que for feito será considerado.</p>
 <p>Todos os itens pedidos abaixo são obrigatórios, entretanto, tudo o que for adicionado além do solicitado será considerado para aumento da pontuação.</p>
@@ -92,6 +92,6 @@
 <ul>
   <li>Criar Conteudo para Aula [somente professor]</li>
   <li>Remover Conteudo para Aula [somente professor]</li>
-  <li>Listar Conteudo por ID_AULA (EM DESENVOLVIMENTO)</li>
-  <li>Listar Conteudos por ID (EM DESENVOLVIMENTO)</li>
+  <li>Listar Conteudo por ID_AULA (<strong>EM DESENVOLVIMENTO</strong>)</li>
+  <li>Listar Conteudos por ID (<strong>EM DESENVOLVIMENTO</strong>)</li>
 </ul>
