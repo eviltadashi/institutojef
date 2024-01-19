@@ -1,11 +1,11 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
-<h1>Instituto J&F - Sistema Teste de Gestão de Cursos</h1>
 
-<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/draw.png">Draw.io</a></strong></p>
-<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/Insomnia.json">Insomnia</a></strong></p>
-<p><strong><a target="_blank" href="https://elisios.com.br/sites/institutojef/sistemas_curso.docx">Docx - (word)</a></strong></p>
+<h1>Instituto J&F - Sistema Teste de Gestão de Cursos</h1>
+<p><a target="_blank" href="https://elisios.com.br/sites/institutojef/draw.png"> <strong>Draw.io</strong></a></p>
+<p><a target="_blank" href="https://elisios.com.br/sites/institutojef/Insomnia.json"> <strong>Insomnia</strong></a></p>
+<p><a target="_blank" href="https://elisios.com.br/sites/institutojef/sistemas_curso.docx"> <strong>Docx - (word)</strong></a></p>
 <hr>
 <p>Boa tarde, segue avaliação prática para vaga de Analista de TI. Informo que serão avaliadas as posições de Pleno e Senior, portanto, iremos considerar, funcionamento, lógica, design de código, utilização do framework, documentação e testes. Cada um desses itens tem uma pontuação individual, o que significa que mesmo que não consiga realizar todo o desenvolvimento, o que for feito será considerado.</p>
 <p>Todos os itens pedidos abaixo são obrigatórios, entretanto, tudo o que for adicionado além do solicitado será considerado para aumento da pontuação.</p>
