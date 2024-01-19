@@ -7,7 +7,12 @@ export declare class AulasCounteudoRepository {
         nome: string;
         conteudo: Buffer;
     }>;
-    updateConteudo(id: string, dados: AulaConteudoEntity): Promise<void>;
+    updateConteudo(id: string, dados: AulaConteudoEntity): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    }>;
     deleteConteudo(id: string): Promise<{
         success: boolean;
         message: string;
@@ -15,6 +20,16 @@ export declare class AulasCounteudoRepository {
         id_aula: string;
         nome: string;
     }>;
-    getConteudoByIdAula(id_aula: string): Promise<void>;
-    getConteudoById(id: string): Promise<void>;
+    getConteudoByIdAula(id_aula: string): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    }[]>;
+    getConteudoById(id: string): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    }>;
 }

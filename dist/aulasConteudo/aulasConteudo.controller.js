@@ -20,6 +20,7 @@ const criaAulasConteudo_dto_1 = require("./dto/criaAulasConteudo.dto");
 const passport_1 = require("@nestjs/passport");
 const decodeToken_service_1 = require("../decodeToken.service");
 const uuid_1 = require("uuid");
+const atualizaAulasConteudo_dto_1 = require("./dto/atualizaAulasConteudo.dto");
 let AulasCounteudoController = class AulasCounteudoController {
     constructor(jwtDecripty, AulasConteudoRepository) {
         this.jwtDecripty = jwtDecripty;
@@ -40,17 +41,31 @@ let AulasCounteudoController = class AulasCounteudoController {
         }
         return { "mensagem": "Você não tem permissão para acessar essa api" };
     }
-    async listarConteudo(auth) {
+    async listarConteudoPorId(auth, id) {
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
         if (userType === 'professor') {
+            return await this.AulasConteudoRepository.getConteudoById(id);
         }
         return { "mensagem": "Você não tem permissão para acessar essa api" };
     }
-    async atualizarConteudo(auth) {
+    async listarConteudoPorAula(auth, id) {
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
         if (userType === 'professor') {
+            return await this.AulasConteudoRepository.getConteudoByIdAula(id);
+        }
+        return { "mensagem": "Você não tem permissão para acessar essa api" };
+    }
+    async atualizarConteudo(auth, id, dados) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const entity = new aulasConteudo_entity_1.AulaConteudoEntity();
+            entity.nome = dados.nome;
+            entity.conteudo = dados.conteudo !== undefined ? Buffer.from(dados.conteudo, 'base64') : undefined;
+            const ret = await this.AulasConteudoRepository.updateConteudo(id, entity);
+            return ret;
         }
         return { "mensagem": "Você não tem permissão para acessar essa api" };
     }
@@ -74,19 +89,31 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AulasCounteudoController.prototype, "criarConteudo", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/:id'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
-], AulasCounteudoController.prototype, "listarConteudo", null);
+], AulasCounteudoController.prototype, "listarConteudoPorId", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Get)('/aula/:id'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], AulasCounteudoController.prototype, "listarConteudoPorAula", null);
+__decorate([
+    (0, common_1.Put)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, atualizaAulasConteudo_dto_1.AtualizaAulasConteudoDTO]),
     __metadata("design:returntype", Promise)
 ], AulasCounteudoController.prototype, "atualizarConteudo", null);
 __decorate([

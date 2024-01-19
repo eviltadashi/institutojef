@@ -19,6 +19,11 @@ let AulasCounteudoRepository = class AulasCounteudoRepository {
         if (!content) {
             throw new common_1.NotFoundException(`Não foi possivel localisar conteudo com id ${id}}`);
         }
+        const ret = prisma.aulas_conteudo.update({
+            where: { id },
+            data: dados
+        });
+        return ret;
     }
     async deleteConteudo(id) {
         const content = await prisma.aulas_conteudo.findUnique({ where: { id } });
@@ -35,12 +40,20 @@ let AulasCounteudoRepository = class AulasCounteudoRepository {
         };
     }
     async getConteudoByIdAula(id_aula) {
+        const ret = await prisma.aulas_conteudo.findMany({ where: { id_aula: id_aula } });
+        if (ret.length !== 0) {
+            return ret;
+        }
+        else {
+            throw new common_1.NotFoundException('Não foi localizado conteudos para essa aula');
+        }
     }
     async getConteudoById(id) {
         const content = prisma.aulas_conteudo.findUnique({ where: { id } });
         if (!content) {
             throw new common_1.NotFoundException(`Não foi possivel localisar conteudo com id ${id}}`);
         }
+        return content;
     }
 };
 exports.AulasCounteudoRepository = AulasCounteudoRepository;

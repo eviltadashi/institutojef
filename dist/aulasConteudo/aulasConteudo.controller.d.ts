@@ -2,6 +2,7 @@
 import { AulasCounteudoRepository } from "./aulasConteudo.repository";
 import { CriaAulasConteudoDTO } from "./dto/criaAulasConteudo.dto";
 import { JwtDecripty } from "src/decodeToken.service";
+import { AtualizaAulasConteudoDTO } from "./dto/atualizaAulasConteudo.dto";
 export declare class AulasCounteudoController {
     private jwtDecripty;
     private AulasConteudoRepository;
@@ -14,10 +15,28 @@ export declare class AulasCounteudoController {
     } | {
         mensagem: string;
     }>;
-    listarConteudo(auth: string): Promise<{
+    listarConteudoPorId(auth: string, id: string): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    } | {
         mensagem: string;
     }>;
-    atualizarConteudo(auth: string): Promise<{
+    listarConteudoPorAula(auth: string, id: string): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    }[] | {
+        mensagem: string;
+    }>;
+    atualizarConteudo(auth: string, id: string, dados: AtualizaAulasConteudoDTO): Promise<{
+        id: string;
+        id_aula: string;
+        nome: string;
+        conteudo: Buffer;
+    } | {
         mensagem: string;
     }>;
     removerConteudo(auth: string, id: string): Promise<{

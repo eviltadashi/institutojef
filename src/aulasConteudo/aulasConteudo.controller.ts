@@ -5,6 +5,8 @@ import { CriaAulasConteudoDTO } from "./dto/criaAulasConteudo.dto";
 import { AuthGuard } from "@nestjs/passport";
 import { JwtDecripty } from "src/decodeToken.service";
 import { v4 as uuid } from 'uuid';
+import { CriarAulasDTO } from "src/aulas/dto/criarAulas.dto";
+import { AtualizaAulasConteudoDTO } from "./dto/atualizaAulasConteudo.dto";
 
 @Controller('aulas_conteudo')
 export class AulasCounteudoController {
@@ -18,9 +20,7 @@ export class AulasCounteudoController {
     async criarConteudo(@Headers('Authorization') auth : string, @Body() dados : CriaAulasConteudoDTO){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
-
         const bufferFromBase64 = Buffer.from(dados.conteudo, 'base64');
-
         if(userType==='professor'){
             const entity = new AulaConteudoEntity()
             entity.id = uuid();
@@ -33,30 +33,39 @@ export class AulasCounteudoController {
         return {"mensagem":"Você não tem permissão para acessar essa api"} 
     }
 
-    @Get()
+    @Get('/:id')
     @UseGuards(AuthGuard())
-    async listarConteudo(@Headers('Authorization') auth : string){
+    async listarConteudoPorId( @Headers('Authorization') auth : string, @Param('id') id:string ){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
         if(userType==='professor'){
-            
-
-
-
+            return await this.AulasConteudoRepository.getConteudoById(id);
         }
         return {"mensagem":"Você não tem permissão para acessar essa api"} 
     }
 
-    @Put()
+    @Get('/aula/:id')
     @UseGuards(AuthGuard())
-    async atualizarConteudo(@Headers('Authorization') auth : string){
+    async listarConteudoPorAula( @Headers('Authorization') auth : string, @Param('id') id:string ){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
         if(userType==='professor'){
-            
+            return await this.AulasConteudoRepository.getConteudoByIdAula(id);
+        }
+        return {"mensagem":"Você não tem permissão para acessar essa api"} 
+    }
 
-
-
+    @Put('/:id')
+    @UseGuards(AuthGuard())
+    async atualizarConteudo(@Headers('Authorization') auth : string, @Param('id') id:string, @Body() dados:AtualizaAulasConteudoDTO){
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if(userType==='professor'){
+            const entity = new AulaConteudoEntity()
+            entity.nome = dados.nome;
+            entity.conteudo = dados.conteudo !== undefined ? Buffer.from(dados.conteudo, 'base64') : undefined;
+            const ret = await this.AulasConteudoRepository.updateConteudo(id, entity);
+            return ret;
         }
         return {"mensagem":"Você não tem permissão para acessar essa api"} 
     }

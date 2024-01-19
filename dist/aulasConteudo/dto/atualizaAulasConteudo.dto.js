@@ -19,4 +19,9 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AtualizaAulasConteudoDTO.prototype, "nome", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O conteúdo deve ser enviado como base64' }),
+    __metadata("design:type", String)
+], AtualizaAulasConteudoDTO.prototype, "conteudo", void 0);
 //# sourceMappingURL=atualizaAulasConteudo.dto.js.map

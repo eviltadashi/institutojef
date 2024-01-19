@@ -14,6 +14,11 @@ export class AulasCounteudoRepository {
     async updateConteudo(id:string, dados: AulaConteudoEntity){
         const content = prisma.aulas_conteudo.findUnique({where:{id}})
         if(!content){ throw new NotFoundException(`Não foi possivel localisar conteudo com id ${id}}`)}
+        const ret = prisma.aulas_conteudo.update({
+            where:{id},
+            data:dados
+        })
+        return ret;
     }
 
     async deleteConteudo(id:string){
@@ -28,15 +33,20 @@ export class AulasCounteudoRepository {
             nome: ret.nome
         }
     }
-    async getConteudoByIdAula(id_aula:string){
-        
 
+    async getConteudoByIdAula(id_aula:string){
+        const ret = await prisma.aulas_conteudo.findMany({where:{id_aula:id_aula}})
+        if(ret.length!==0){
+            return ret;
+        }else{
+            throw new NotFoundException('Não foi localizado conteudos para essa aula')
+        }
     }
+
     async getConteudoById(id:string){
         const content = prisma.aulas_conteudo.findUnique({where:{id}})
         if(!content){ throw new NotFoundException(`Não foi possivel localisar conteudo com id ${id}}`)}
-
+        return content;
     }
-
 
 }
