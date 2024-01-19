@@ -1,12 +1,11 @@
-import { Optional } from "@nestjs/common";
 import { IsBase64, IsNotEmpty, IsOptional } from "class-validator";
 
 export class CriarCursosDTO {
 
-    @IsNotEmpty({message:''})
+    @IsNotEmpty({ message:'Nome não pode ficar em branco'})
     nome: string;
 
-    @IsNotEmpty({message:''})
+    @IsNotEmpty({ message:'Descrição não pode ficar em branco'})
     descricao: string;
 
     @IsOptional()

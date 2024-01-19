@@ -150,7 +150,7 @@ exports.Prisma.AulasScalarFieldEnum = {
 
 exports.Prisma.Aulas_conteudoScalarFieldEnum = {
   id: 'id',
-  id_curso: 'id_curso',
+  id_aula: 'id_aula',
   nome: 'nome',
   conteudo: 'conteudo'
 };
@@ -173,10 +173,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 exports.StatusEnum = exports.$Enums.StatusEnum = {
-  ADICIONADO: 'ADICIONADO',
-  INICIADO: 'INICIADO',
-  CONCLUIDO: 'CONCLUIDO',
-  CANCELADO: 'CANCELADO'
+  nao_iniciado: 'nao_iniciado',
+  em_andamento: 'em_andamento',
+  finalizado: 'finalizado',
+  aprovado: 'aprovado'
 };
 
 exports.Prisma.ModelName = {

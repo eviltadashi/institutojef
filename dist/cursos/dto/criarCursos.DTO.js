@@ -15,11 +15,11 @@ class CriarCursosDTO {
 }
 exports.CriarCursosDTO = CriarCursosDTO;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: '' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Nome não pode ficar em branco' }),
     __metadata("design:type", String)
 ], CriarCursosDTO.prototype, "nome", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: '' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Descrição não pode ficar em branco' }),
     __metadata("design:type", String)
 ], CriarCursosDTO.prototype, "descricao", void 0);
 __decorate([

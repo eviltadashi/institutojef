@@ -57,7 +57,7 @@ model aulas {
 
 model aulas_conteudo {
   id        String   @unique   @id
-  id_curso  String
+  id_aula  String
   nome      String
   conteudo  Bytes 
 }
@@ -76,8 +76,8 @@ model relation_aluno_curso {
 }
 
 enum StatusEnum {
-  ADICIONADO
-  INICIADO
-  CONCLUIDO
-  CANCELADO
+  nao_iniciado
+  em_andamento
+  finalizado
+  aprovado
 }

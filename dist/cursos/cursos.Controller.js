@@ -92,12 +92,14 @@ __decorate([
 ], CursosController.prototype, "criarCursos", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CursosController.prototype, "listarCursos", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -105,6 +107,7 @@ __decorate([
 ], CursosController.prototype, "listarCursoPorId", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Headers)('Authorization')),
     __param(1, (0, common_1.Param)('id')),
     __param(2, (0, common_1.Body)()),
@@ -114,6 +117,7 @@ __decorate([
 ], CursosController.prototype, "atualizarCursos", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Headers)('Authorization')),
     __param(1, (0, common_1.Param)('id')),
     __param(2, (0, common_1.Body)()),

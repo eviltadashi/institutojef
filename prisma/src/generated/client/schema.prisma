@@ -20,7 +20,7 @@ model alunos {
   email     String   @unique
   senha     String
   is_active Boolean  @default(true)
-  userType  String   
+  userType  String   @default("aluno")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -31,7 +31,7 @@ model professores {
   email     String   @unique
   senha     String
   is_active Boolean  @default(true)
-  userType  String   
+  userType  String   @default("professor")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -57,7 +57,7 @@ model aulas {
 
 model aulas_conteudo {
   id        String   @unique   @id
-  id_curso  String
+  id_aula  String
   nome      String
   conteudo  Bytes 
 }
@@ -76,8 +76,8 @@ model relation_aluno_curso {
 }
 
 enum StatusEnum {
-  ADICIONADO
-  INICIADO
-  CONCLUIDO
-  CANCELADO
+  nao_iniciado
+  em_andamento
+  finalizado
+  aprovado
 }

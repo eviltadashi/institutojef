@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtDecripty } from "src/decodeToken.service";
 import { atualizaCursoDTO } from "./dto/atualizaCurso.DTO";
-import { log } from "console";
 
 @Controller('/cursos')
 export class CursosController{
@@ -15,7 +14,6 @@ export class CursosController{
         private cursosRepository : CursosRepository,
         private jwtDecripty : JwtDecripty
     ){}
-
 
     @Post()
     @UseGuards(AuthGuard())
@@ -26,13 +24,11 @@ export class CursosController{
 
         if(userType==='professor'){
             const cursosEntity = new CursosEntity()
-        
             cursosEntity.id = uuid();
             cursosEntity.nome = dados.nome;
             cursosEntity.descricao = dados.descricao;
             cursosEntity.banner = dados.banner;
             cursosEntity.is_active = dados.is_active;
-            
             const result = await this.cursosRepository.create(cursosEntity)
             return result;
         }
@@ -41,16 +37,19 @@ export class CursosController{
 
     
     @Get()
+    @UseGuards(AuthGuard())
     async listarCursos(){
         return await this.cursosRepository.get();
     }
 
     @Get(':id')
+    @UseGuards(AuthGuard())
     async listarCursoPorId(@Param('id') id:string){
         return await this.cursosRepository.getById(id);
     }
 
     @Put(':id')
+    @UseGuards(AuthGuard())
     async atualizarCursos(@Headers('Authorization') auth : string ,@Param('id') id:string, @Body() dados:atualizaCursoDTO){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
@@ -69,6 +68,7 @@ export class CursosController{
     }
 
     @Delete(':id')
+    @UseGuards(AuthGuard())
     async removerCursos(@Headers('Authorization') auth : string ,@Param('id') id:string, @Body() dados:atualizaCursoDTO){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
@@ -81,7 +81,6 @@ export class CursosController{
                     "message":"Curso desativado com sucesso"
                 }
             }
-
         }else{
             return {"message":"Usuário não tem permissão para remover o cursos"}
         }

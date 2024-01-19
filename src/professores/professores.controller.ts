@@ -1,16 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, Headers } from "@nestjs/common";
 import { professoresRepository } from "./professores.repository";
 import { CriarProfessorDTO } from "./dto/criarProfessorDTO";
 import { ProfessoresEntity } from "./professores.entity";
-import { v4 as uuid } from 'uuid';
 import { AtualizarProfessorDTO } from "./dto/atualizarProfessorDTO";
+import { AuthGuard } from "@nestjs/passport";
 import * as bcrypt from 'bcrypt';
-import { Prisma } from "prisma/src/generated/client";
-import { listaProfessoresDTO } from "./dto/listaProfessoresDTO";
+import { v4 as uuid } from 'uuid';
 
 @Controller('/professores')
 
 export class professoresController{
+    jwtDecripty: any;
     constructor(private professorRepository: professoresRepository){}
 
     @Post()
@@ -28,52 +28,71 @@ export class professoresController{
             "nome":result.nome,
             "email":result.email
         }
-        
-      
     }
 
     @Get()
-    async getProfessores(){
-       const ret = await this.professorRepository.listarProfessores();
-       return ret;
+    @UseGuards(AuthGuard())
+    async getProfessores(@Headers('Authorization') auth : string ){
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if(userType==='professor'){
+            return await this.professorRepository.listarProfessores();
+        }
+        return {"mensagem":"Você não tem permissão para acessar estes dados"}       
     }
 
-    @Get(':id')
-    async getProfessoresById(@Param('id') id:string){
-        const ret = await this.professorRepository.listarProfessorPorID(id);
-        return ret;
-    }
-    
-   
-    @Put(':id')
-    async updateProfessor(@Param('id') id:string , @Body() dados:AtualizarProfessorDTO){
-        const entity = new ProfessoresEntity()
-        entity.nome = dados.nome;
-        entity.email = dados.email;
-        entity.is_active = dados.is_active;
-        if(dados.senha){entity.senha = await bcrypt.hash(dados.senha,10);}
-        const res = await this.professorRepository.atualizaProfessor(id,entity);
-        return {
-            "id":res.id,
-            "nome":res.nome,
-            "email":res.email,
-            "createdAt":res.createdAt,
-            "updatedAt":res.updatedAt,
-            "is_active":res.is_active
+    @Get('/:id')
+    @UseGuards(AuthGuard())
+    async getProfessoresById(@Headers('Authorization') auth : string, @Param('id') id:string){
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if(userType==='professor'){
+            const ret = await this.professorRepository.listarProfessorPorID(id);
+            return ret;
         }
-        
+        return {"mensagem":"Você não tem permissão para acessar estes dados"}
+    }
+       
+    @Put('/:id')
+    @UseGuards(AuthGuard())
+    async updateProfessor(@Headers('Authorization') auth : string, @Param('id') id:string , @Body() dados:AtualizarProfessorDTO){
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if(userType==='professor'){
+            const entity = new ProfessoresEntity()
+            entity.nome = dados.nome;
+            entity.email = dados.email;
+            entity.is_active = dados.is_active;
+            if(dados.senha){entity.senha = await bcrypt.hash(dados.senha,10);}
+            const res = await this.professorRepository.atualizaProfessor(id,entity);
+            return {
+                "id":res.id,
+                "nome":res.nome,
+                "email":res.email,
+                "createdAt":res.createdAt,
+                "updatedAt":res.updatedAt,
+                "is_active":res.is_active
+            }
+        }
+        return {"mensagem":"Você não tem permissão para acessar estes dados"}
     }
 
     @Delete(':id')
-    async deleteProfessor(@Param('id') id:string){
-        // DELETE LOGICO
-        const entity = new ProfessoresEntity()
-        entity.is_active = false;
-        const res = await this.professorRepository.atualizaProfessor(id,entity);
-        return {
-            "id":res.id,
-            "email":res.email,
-            "is_active":res.is_active
-        }        
+    @UseGuards(AuthGuard())
+    async deleteProfessor(@Headers('Authorization') auth : string, @Param('id') id:string){
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if(userType==='professor'){
+            // DELETE LOGICO
+            const entity = new ProfessoresEntity()
+            entity.is_active = false;
+            const res = await this.professorRepository.atualizaProfessor(id,entity);
+            return {
+                "id":res.id,
+                "email":res.email,
+                "is_active":res.is_active
+            }        
+        }
+        return {"mensagem":"Você não tem permissão para realizar esta ação"}
     }
 }

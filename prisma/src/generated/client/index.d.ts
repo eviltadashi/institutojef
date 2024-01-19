@@ -54,10 +54,10 @@ export type relation_aluno_curso = $Result.DefaultSelection<Prisma.$relation_alu
  */
 export namespace $Enums {
   export const StatusEnum: {
-  ADICIONADO: 'ADICIONADO',
-  INICIADO: 'INICIADO',
-  CONCLUIDO: 'CONCLUIDO',
-  CANCELADO: 'CANCELADO'
+  nao_iniciado: 'nao_iniciado',
+  em_andamento: 'em_andamento',
+  finalizado: 'finalizado',
+  aprovado: 'aprovado'
 };
 
 export type StatusEnum = (typeof StatusEnum)[keyof typeof StatusEnum]
@@ -4958,21 +4958,21 @@ export namespace Prisma {
 
   export type Aulas_conteudoMinAggregateOutputType = {
     id: string | null
-    id_curso: string | null
+    id_aula: string | null
     nome: string | null
     conteudo: Buffer | null
   }
 
   export type Aulas_conteudoMaxAggregateOutputType = {
     id: string | null
-    id_curso: string | null
+    id_aula: string | null
     nome: string | null
     conteudo: Buffer | null
   }
 
   export type Aulas_conteudoCountAggregateOutputType = {
     id: number
-    id_curso: number
+    id_aula: number
     nome: number
     conteudo: number
     _all: number
@@ -4981,21 +4981,21 @@ export namespace Prisma {
 
   export type Aulas_conteudoMinAggregateInputType = {
     id?: true
-    id_curso?: true
+    id_aula?: true
     nome?: true
     conteudo?: true
   }
 
   export type Aulas_conteudoMaxAggregateInputType = {
     id?: true
-    id_curso?: true
+    id_aula?: true
     nome?: true
     conteudo?: true
   }
 
   export type Aulas_conteudoCountAggregateInputType = {
     id?: true
-    id_curso?: true
+    id_aula?: true
     nome?: true
     conteudo?: true
     _all?: true
@@ -5075,7 +5075,7 @@ export namespace Prisma {
 
   export type Aulas_conteudoGroupByOutputType = {
     id: string
-    id_curso: string
+    id_aula: string
     nome: string
     conteudo: Buffer
     _count: Aulas_conteudoCountAggregateOutputType | null
@@ -5099,14 +5099,14 @@ export namespace Prisma {
 
   export type aulas_conteudoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    id_curso?: boolean
+    id_aula?: boolean
     nome?: boolean
     conteudo?: boolean
   }, ExtArgs["result"]["aulas_conteudo"]>
 
   export type aulas_conteudoSelectScalar = {
     id?: boolean
-    id_curso?: boolean
+    id_aula?: boolean
     nome?: boolean
     conteudo?: boolean
   }
@@ -5117,7 +5117,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      id_curso: string
+      id_aula: string
       nome: string
       conteudo: Buffer
     }, ExtArgs["result"]["aulas_conteudo"]>
@@ -5515,7 +5515,7 @@ export namespace Prisma {
    */ 
   interface aulas_conteudoFieldRefs {
     readonly id: FieldRef<"aulas_conteudo", 'String'>
-    readonly id_curso: FieldRef<"aulas_conteudo", 'String'>
+    readonly id_aula: FieldRef<"aulas_conteudo", 'String'>
     readonly nome: FieldRef<"aulas_conteudo", 'String'>
     readonly conteudo: FieldRef<"aulas_conteudo", 'Bytes'>
   }
@@ -7581,7 +7581,7 @@ export namespace Prisma {
 
   export const Aulas_conteudoScalarFieldEnum: {
     id: 'id',
-    id_curso: 'id_curso',
+    id_aula: 'id_aula',
     nome: 'nome',
     conteudo: 'conteudo'
   };
@@ -7924,14 +7924,14 @@ export namespace Prisma {
     OR?: aulas_conteudoWhereInput[]
     NOT?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
     id?: StringFilter<"aulas_conteudo"> | string
-    id_curso?: StringFilter<"aulas_conteudo"> | string
+    id_aula?: StringFilter<"aulas_conteudo"> | string
     nome?: StringFilter<"aulas_conteudo"> | string
     conteudo?: BytesFilter<"aulas_conteudo"> | Buffer
   }
 
   export type aulas_conteudoOrderByWithRelationInput = {
     id?: SortOrder
-    id_curso?: SortOrder
+    id_aula?: SortOrder
     nome?: SortOrder
     conteudo?: SortOrder
   }
@@ -7941,14 +7941,14 @@ export namespace Prisma {
     AND?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
     OR?: aulas_conteudoWhereInput[]
     NOT?: aulas_conteudoWhereInput | aulas_conteudoWhereInput[]
-    id_curso?: StringFilter<"aulas_conteudo"> | string
+    id_aula?: StringFilter<"aulas_conteudo"> | string
     nome?: StringFilter<"aulas_conteudo"> | string
     conteudo?: BytesFilter<"aulas_conteudo"> | Buffer
   }, "id" | "id">
 
   export type aulas_conteudoOrderByWithAggregationInput = {
     id?: SortOrder
-    id_curso?: SortOrder
+    id_aula?: SortOrder
     nome?: SortOrder
     conteudo?: SortOrder
     _count?: aulas_conteudoCountOrderByAggregateInput
@@ -7961,7 +7961,7 @@ export namespace Prisma {
     OR?: aulas_conteudoScalarWhereWithAggregatesInput[]
     NOT?: aulas_conteudoScalarWhereWithAggregatesInput | aulas_conteudoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"aulas_conteudo"> | string
-    id_curso?: StringWithAggregatesFilter<"aulas_conteudo"> | string
+    id_aula?: StringWithAggregatesFilter<"aulas_conteudo"> | string
     nome?: StringWithAggregatesFilter<"aulas_conteudo"> | string
     conteudo?: BytesWithAggregatesFilter<"aulas_conteudo"> | Buffer
   }
@@ -8061,7 +8061,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8072,7 +8072,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8105,7 +8105,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8138,7 +8138,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8149,7 +8149,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8182,7 +8182,7 @@ export namespace Prisma {
     email: string
     senha: string
     is_active?: boolean
-    userType: string
+    userType?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8344,49 +8344,49 @@ export namespace Prisma {
 
   export type aulas_conteudoCreateInput = {
     id: string
-    id_curso: string
+    id_aula: string
     nome: string
     conteudo: Buffer
   }
 
   export type aulas_conteudoUncheckedCreateInput = {
     id: string
-    id_curso: string
+    id_aula: string
     nome: string
     conteudo: Buffer
   }
 
   export type aulas_conteudoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     conteudo?: BytesFieldUpdateOperationsInput | Buffer
   }
 
   export type aulas_conteudoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     conteudo?: BytesFieldUpdateOperationsInput | Buffer
   }
 
   export type aulas_conteudoCreateManyInput = {
     id: string
-    id_curso: string
+    id_aula: string
     nome: string
     conteudo: Buffer
   }
 
   export type aulas_conteudoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     conteudo?: BytesFieldUpdateOperationsInput | Buffer
   }
 
   export type aulas_conteudoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    id_curso?: StringFieldUpdateOperationsInput | string
+    id_aula?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     conteudo?: BytesFieldUpdateOperationsInput | Buffer
   }
@@ -8683,21 +8683,21 @@ export namespace Prisma {
 
   export type aulas_conteudoCountOrderByAggregateInput = {
     id?: SortOrder
-    id_curso?: SortOrder
+    id_aula?: SortOrder
     nome?: SortOrder
     conteudo?: SortOrder
   }
 
   export type aulas_conteudoMaxOrderByAggregateInput = {
     id?: SortOrder
-    id_curso?: SortOrder
+    id_aula?: SortOrder
     nome?: SortOrder
     conteudo?: SortOrder
   }
 
   export type aulas_conteudoMinOrderByAggregateInput = {
     id?: SortOrder
-    id_curso?: SortOrder
+    id_aula?: SortOrder
     nome?: SortOrder
     conteudo?: SortOrder
   }

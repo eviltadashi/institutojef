@@ -17,9 +17,10 @@ const common_1 = require("@nestjs/common");
 const professores_repository_1 = require("./professores.repository");
 const criarProfessorDTO_1 = require("./dto/criarProfessorDTO");
 const professores_entity_1 = require("./professores.entity");
-const uuid_1 = require("uuid");
 const atualizarProfessorDTO_1 = require("./dto/atualizarProfessorDTO");
+const passport_1 = require("@nestjs/passport");
 const bcrypt = require("bcrypt");
+const uuid_1 = require("uuid");
 let professoresController = class professoresController {
     constructor(professorRepository) {
         this.professorRepository = professorRepository;
@@ -39,41 +40,60 @@ let professoresController = class professoresController {
             "email": result.email
         };
     }
-    async getProfessores() {
-        const ret = await this.professorRepository.listarProfessores();
-        return ret;
-    }
-    async getProfessoresById(id) {
-        const ret = await this.professorRepository.listarProfessorPorID(id);
-        return ret;
-    }
-    async updateProfessor(id, dados) {
-        const entity = new professores_entity_1.ProfessoresEntity();
-        entity.nome = dados.nome;
-        entity.email = dados.email;
-        entity.is_active = dados.is_active;
-        if (dados.senha) {
-            entity.senha = await bcrypt.hash(dados.senha, 10);
+    async getProfessores(auth) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            return await this.professorRepository.listarProfessores();
         }
-        const res = await this.professorRepository.atualizaProfessor(id, entity);
-        return {
-            "id": res.id,
-            "nome": res.nome,
-            "email": res.email,
-            "createdAt": res.createdAt,
-            "updatedAt": res.updatedAt,
-            "is_active": res.is_active
-        };
+        return { "mensagem": "Você não tem permissão para acessar estes dados" };
     }
-    async deleteProfessor(id) {
-        const entity = new professores_entity_1.ProfessoresEntity();
-        entity.is_active = false;
-        const res = await this.professorRepository.atualizaProfessor(id, entity);
-        return {
-            "id": res.id,
-            "email": res.email,
-            "is_active": res.is_active
-        };
+    async getProfessoresById(auth, id) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const ret = await this.professorRepository.listarProfessorPorID(id);
+            return ret;
+        }
+        return { "mensagem": "Você não tem permissão para acessar estes dados" };
+    }
+    async updateProfessor(auth, id, dados) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const entity = new professores_entity_1.ProfessoresEntity();
+            entity.nome = dados.nome;
+            entity.email = dados.email;
+            entity.is_active = dados.is_active;
+            if (dados.senha) {
+                entity.senha = await bcrypt.hash(dados.senha, 10);
+            }
+            const res = await this.professorRepository.atualizaProfessor(id, entity);
+            return {
+                "id": res.id,
+                "nome": res.nome,
+                "email": res.email,
+                "createdAt": res.createdAt,
+                "updatedAt": res.updatedAt,
+                "is_active": res.is_active
+            };
+        }
+        return { "mensagem": "Você não tem permissão para acessar estes dados" };
+    }
+    async deleteProfessor(auth, id) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const entity = new professores_entity_1.ProfessoresEntity();
+            entity.is_active = false;
+            const res = await this.professorRepository.atualizaProfessor(id, entity);
+            return {
+                "id": res.id,
+                "email": res.email,
+                "is_active": res.is_active
+            };
+        }
+        return { "mensagem": "Você não tem permissão para realizar esta ação" };
     }
 };
 exports.professoresController = professoresController;
@@ -86,30 +106,38 @@ __decorate([
 ], professoresController.prototype, "createNewProfessor", null);
 __decorate([
     (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], professoresController.prototype, "getProfessores", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
+], professoresController.prototype, "getProfessores", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
 ], professoresController.prototype, "getProfessoresById", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Put)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, atualizarProfessorDTO_1.AtualizarProfessorDTO]),
+    __metadata("design:paramtypes", [String, String, atualizarProfessorDTO_1.AtualizarProfessorDTO]),
     __metadata("design:returntype", Promise)
 ], professoresController.prototype, "updateProfessor", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], professoresController.prototype, "deleteProfessor", null);
 exports.professoresController = professoresController = __decorate([

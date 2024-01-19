@@ -27,40 +27,48 @@ let alunosController = class alunosController {
         this.alunosRepository = alunosRepository;
         this.jwtDecripty = jwtDecripty;
     }
-    async createAluno(dadosAluno) {
-        const alunoEntity = new aluno_entity_1.AlunoEntity();
-        alunoEntity.id = (0, uuid_1.v4)();
-        alunoEntity.nome = dadosAluno.nome;
-        alunoEntity.email = dadosAluno.email;
-        alunoEntity.is_active = dadosAluno.is_active;
-        alunoEntity.senha = await bcrypt.hash(dadosAluno.senha, 10);
-        alunoEntity.userType = 'aluno';
-        const result = await this.alunosRepository.create(alunoEntity);
-        return {
-            "id": result.id,
-            "nome": result.nome,
-            "email": result.email
-        };
+    async createAluno(auth, dadosAluno) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            const alunoEntity = new aluno_entity_1.AlunoEntity();
+            alunoEntity.id = (0, uuid_1.v4)();
+            alunoEntity.nome = dadosAluno.nome;
+            alunoEntity.email = dadosAluno.email;
+            alunoEntity.is_active = dadosAluno.is_active;
+            alunoEntity.senha = await bcrypt.hash(dadosAluno.senha, 10);
+            alunoEntity.userType = 'aluno';
+            const result = await this.alunosRepository.create(alunoEntity);
+            return {
+                "id": result.id,
+                "nome": result.nome,
+                "email": result.email
+            };
+        }
+        return { 'msg': 'Você não possuí privilégios para acessar essa rota' };
     }
     async listaAlunos(auth) {
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
         if (userType === 'professor') {
-            const retAlunos = await this.alunosRepository.listar();
-            return retAlunos;
+            return await this.alunosRepository.listar();
         }
-        return { "mensagem": "Acesso restrito." };
+        return { 'msg': 'Você não possuí privilégios para acessar essa rota' };
     }
     async listaAlunosId(id) {
         const retAluno = await this.alunosRepository.getAlunoId(id);
         if (!retAluno) {
             throw new common_1.NotFoundException(`Aluno com ID ${id} não encontrado`);
         }
-        return retAluno;
+        return { 'msg': 'Você não possuí privilégios para acessar essa rota' };
     }
-    async listaAlunoEmail(email) {
-        const retAlunoEmail = await this.alunosRepository.getAlunoEmail(email);
-        return retAlunoEmail;
+    async listaAlunoEmail(auth, email) {
+        const token = auth.split(' ');
+        const userType = await this.jwtDecripty.decodeToken(token[1]);
+        if (userType === 'professor') {
+            return await this.alunosRepository.getAlunoEmail(email);
+        }
+        return { 'msg': 'Você não possuí privilégios para acessar essa rota' };
     }
     async atualizaAluno(id, dadosAlunoUpdate) {
         const alunoEntity = new aluno_entity_1.AlunoEntity();
@@ -93,9 +101,11 @@ let alunosController = class alunosController {
 exports.alunosController = alunosController;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [criaAlunoDTO_1.CriarAlunoDTO]),
+    __metadata("design:paramtypes", [String, criaAlunoDTO_1.CriarAlunoDTO]),
     __metadata("design:returntype", Promise)
 ], alunosController.prototype, "createAluno", null);
 __decorate([
@@ -108,6 +118,7 @@ __decorate([
 ], alunosController.prototype, "listaAlunos", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -115,13 +126,16 @@ __decorate([
 ], alunosController.prototype, "listaAlunosId", null);
 __decorate([
     (0, common_1.Get)('email/:email'),
-    __param(0, (0, common_1.Param)('email')),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
+    __param(0, (0, common_1.Headers)('Authorization')),
+    __param(1, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], alunosController.prototype, "listaAlunoEmail", null);
 __decorate([
     (0, common_1.Put)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -130,6 +144,7 @@ __decorate([
 ], alunosController.prototype, "atualizaAluno", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)()),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

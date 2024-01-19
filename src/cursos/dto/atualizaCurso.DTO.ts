@@ -3,9 +3,11 @@ import { IsBoolean, IsEmail, IsNotEmpty, IsOptional, IsString, MinLength } from 
 
 export class atualizaCursoDTO{
   
+    @IsNotEmpty({ message:'Nome não pode ficar em branco'})
     @IsOptional()
     nome: string
 
+    @IsNotEmpty({ message:'Descrição não pode ficar em branco'})
     @IsOptional()
     descricao: string
 

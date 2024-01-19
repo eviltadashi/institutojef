@@ -20,7 +20,20 @@ export class CursosRepository {
     }
 
     async getById(id:string){
-        return await prisma.cursos.findUnique({where: {id}});
+        const retCurso = await prisma.cursos.findUnique({where: {id}});
+
+        const retRelacionamentos = await prisma.relation_curso_aulas.findMany({
+            where:{id_curso:id}
+        })
+
+        retCurso['aulas'] = [];
+        for (const rel of retRelacionamentos) {
+            const aula = await prisma.aulas.findUnique({ where: { id: rel.id_aula } });
+            retCurso['aulas'].push(aula);
+        }
+
+        return retCurso;
+
     }
 
     async update(id:string, data: Partial<CursosEntity>){

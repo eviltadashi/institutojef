@@ -15,10 +15,12 @@ class atualizaCursoDTO {
 }
 exports.atualizaCursoDTO = atualizaCursoDTO;
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'Nome não pode ficar em branco' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], atualizaCursoDTO.prototype, "nome", void 0);
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'Descrição não pode ficar em branco' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], atualizaCursoDTO.prototype, "descricao", void 0);

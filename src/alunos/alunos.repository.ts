@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 @Injectable()
 export class alunosRepository{
 
-    async create(aluno: AlunoEntity){
+     async create(aluno: AlunoEntity){
         return prisma.alunos.create({
             data: aluno,
         });

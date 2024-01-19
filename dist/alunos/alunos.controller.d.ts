@@ -3,14 +3,21 @@ import { CriarAlunoDTO } from "./dto/criaAlunoDTO";
 import { atualizaAlunoDTO } from "./dto/atualizaAlunoDTO";
 import { alunos } from "prisma/src/generated/client";
 import { JwtDecripty } from '../decodeToken.service';
+import { alunoInterface } from './aluno.Interface';
 export declare class alunosController {
     private alunosRepository;
     private jwtDecripty;
     constructor(alunosRepository: alunosRepository, jwtDecripty: JwtDecripty);
-    createAluno(dadosAluno: CriarAlunoDTO): Promise<{
+    createAluno(auth: string, dadosAluno: CriarAlunoDTO): Promise<{
         id: string;
         nome: string;
         email: string;
+        msg?: undefined;
+    } | {
+        msg: string;
+        id?: undefined;
+        nome?: undefined;
+        email?: undefined;
     }>;
     listaAlunos(auth: string): Promise<{
         id: string;
@@ -22,10 +29,10 @@ export declare class alunosController {
         createdAt: Date;
         updatedAt: Date;
     }[] | {
-        mensagem: string;
+        msg: string;
     }>;
-    listaAlunosId(id: string): Promise<alunos | null>;
-    listaAlunoEmail(email: string): Promise<alunos | null>;
+    listaAlunosId(id: string): Promise<alunos | alunoInterface>;
+    listaAlunoEmail(auth: string, email: string): Promise<alunos | alunoInterface>;
     atualizaAluno(id: string, dadosAlunoUpdate: atualizaAlunoDTO): Promise<{
         id: string;
         nome: string;

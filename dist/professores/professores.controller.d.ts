@@ -3,13 +3,14 @@ import { CriarProfessorDTO } from "./dto/criarProfessorDTO";
 import { AtualizarProfessorDTO } from "./dto/atualizarProfessorDTO";
 export declare class professoresController {
     private professorRepository;
+    jwtDecripty: any;
     constructor(professorRepository: professoresRepository);
     createNewProfessor(dados: CriarProfessorDTO): Promise<{
         id: string;
         nome: string;
         email: string;
     }>;
-    getProfessores(): Promise<{
+    getProfessores(auth: string): Promise<{
         id: string;
         nome: string;
         email: string;
@@ -18,8 +19,10 @@ export declare class professoresController {
         userType: string;
         createdAt: Date;
         updatedAt: Date;
-    }[]>;
-    getProfessoresById(id: string): Promise<{
+    }[] | {
+        mensagem: string;
+    }>;
+    getProfessoresById(auth: string, id: string): Promise<{
         id: string;
         nome: string;
         email: string;
@@ -28,18 +31,35 @@ export declare class professoresController {
         userType: string;
         createdAt: Date;
         updatedAt: Date;
+    } | {
+        mensagem: string;
     }>;
-    updateProfessor(id: string, dados: AtualizarProfessorDTO): Promise<{
+    updateProfessor(auth: string, id: string, dados: AtualizarProfessorDTO): Promise<{
         id: string;
         nome: string;
         email: string;
         createdAt: Date;
         updatedAt: Date;
         is_active: boolean;
+        mensagem?: undefined;
+    } | {
+        mensagem: string;
+        id?: undefined;
+        nome?: undefined;
+        email?: undefined;
+        createdAt?: undefined;
+        updatedAt?: undefined;
+        is_active?: undefined;
     }>;
-    deleteProfessor(id: string): Promise<{
+    deleteProfessor(auth: string, id: string): Promise<{
         id: string;
         email: string;
         is_active: boolean;
+        mensagem?: undefined;
+    } | {
+        mensagem: string;
+        id?: undefined;
+        email?: undefined;
+        is_active?: undefined;
     }>;
 }
