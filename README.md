@@ -45,7 +45,7 @@
 <p>Caso necessário deixe cadastrado ao menos 2 usuários de cada perfil.</p>
 <p>Não é necessário criar um sistema de login e token, você pode simular o acesso com tokens específicos no header se for o caso. Só não esqueça de mencioná-los no envio da resposta para realização de testes.</p>
 <hr>
-<img src="https://elisios.com.br/sites/institutojef/draw.png" alt="">
+<img src="https://elisios.com.br/sites/institutojef/draw.png">
 <hr>
 <h3>Funcionalidade:</h3>
 <h4>Professores:</h4>

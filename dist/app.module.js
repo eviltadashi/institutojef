@@ -15,6 +15,7 @@ const vinculoAlunoCurso_module_1 = require("./vinculoAlunoCurso/vinculoAlunoCurs
 const aulas_module_1 = require("./aulas/aulas.module");
 const auth_module_1 = require("./auth/auth.module");
 const aulasConteudo_module_1 = require("./aulasConteudo/aulasConteudo.module");
+const progress_module_1 = require("./progressCurso/progress.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,6 +27,7 @@ exports.AppModule = AppModule = __decorate([
             cursos_module_1.cursosModule,
             vinculoAlunoCurso_module_1.VinculoAlunoCursoModule,
             aulasConteudo_module_1.AulasConteudoModule,
+            progress_module_1.ProgressModule,
             aulas_module_1.AulasModule,
             auth_module_1.AuthModule,
         ],

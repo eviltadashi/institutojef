@@ -6,6 +6,7 @@ import { VinculoAlunoCursoModule } from './vinculoAlunoCurso/vinculoAlunoCurso.m
 import { AulasModule } from './aulas/aulas.module';
 import { AuthModule } from './auth/auth.module';
 import { AulasConteudoModule } from './aulasConteudo/aulasConteudo.module';
+import { ProgressModule } from './progressCurso/progress.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AulasConteudoModule } from './aulasConteudo/aulasConteudo.module';
     cursosModule,
     VinculoAlunoCursoModule,
     AulasConteudoModule,
+    ProgressModule,
     AulasModule,
     AuthModule,
   ],

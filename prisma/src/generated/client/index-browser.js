@@ -168,6 +168,14 @@ exports.Prisma.Relation_aluno_cursoScalarFieldEnum = {
   status: 'status'
 };
 
+exports.Prisma.Progress_curso_aulasScalarFieldEnum = {
+  id: 'id',
+  id_aluno: 'id_aluno',
+  id_curso: 'id_curso',
+  id_aula: 'id_aula',
+  visualizado: 'visualizado'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -186,7 +194,8 @@ exports.Prisma.ModelName = {
   aulas: 'aulas',
   aulas_conteudo: 'aulas_conteudo',
   relation_curso_aulas: 'relation_curso_aulas',
-  relation_aluno_curso: 'relation_aluno_curso'
+  relation_aluno_curso: 'relation_aluno_curso',
+  progress_curso_aulas: 'progress_curso_aulas'
 };
 
 /**

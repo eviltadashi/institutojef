@@ -25,12 +25,22 @@ let VinculoAlunoCursoRepository = class VinculoAlunoCursoRepository {
         if (Array.isArray(vinculo) && vinculo.length !== 0) {
             throw new common_1.ConflictException(`Aluno já cadastrado neste curso`);
         }
-        return await prisma.relation_aluno_curso.create({ data: {
+        const ret_vinculo = await prisma.relation_aluno_curso.create({ data: {
                 id: (0, uuid_1.v4)(),
                 id_aluno: idAluno,
                 id_curso: idCurso,
                 status: 'nao_iniciado'
             } });
+        const aulas = await prisma.relation_curso_aulas.findMany({ where: { id_curso: idCurso } });
+        for (const aula of aulas) {
+            await prisma.progress_curso_aulas.create({ data: {
+                    id: (0, uuid_1.v4)(),
+                    id_aluno: idAluno,
+                    id_curso: idCurso,
+                    id_aula: aula.id_aula
+                } });
+        }
+        return ret_vinculo;
     }
     async updateVinculo(id, novoStatus) {
         const vinculo = await prisma.relation_aluno_curso.findUnique({ where: { id } });
@@ -84,16 +94,21 @@ let VinculoAlunoCursoRepository = class VinculoAlunoCursoRepository {
         for (const vinculo of vinculos) {
             const curso = await prisma.cursos.findUnique({ where: { id: vinculo.id_curso } });
             const aulas = await prisma.relation_curso_aulas.findMany({ where: { id_curso: vinculo.id_curso } });
+            curso['status'] = vinculo.status;
             curso['aula'] = [];
             for (const aula of aulas) {
                 const result_aula = await prisma.aulas.findUnique({ where: { id: aula.id_aula } });
-                const listaCurso = {
-                    id: result_aula.id,
-                    nome: result_aula.nome,
-                    descricao: result_aula.descricao,
-                    status: vinculo.status,
-                };
-                curso['aula'].push(listaCurso);
+                const progress = await prisma.progress_curso_aulas.findMany({ where: { id_aula: aula.id_aula } });
+                for (const p of progress) {
+                    const listaCurso = {
+                        id: result_aula.id,
+                        nome: result_aula.nome,
+                        descricao: result_aula.descricao,
+                        visualizado: p.visualizado,
+                        visualizacao_id: p.id
+                    };
+                    curso['aula'].push(listaCurso);
+                }
             }
             aluno['cursos'].push(curso);
         }
