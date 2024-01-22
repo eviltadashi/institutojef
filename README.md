@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 <h1>Instituto J&F - Sistema Teste de Gestão de Cursos</h1>
-<p><a target="_blank" href="https://elisios.com.br/sites/institutojef/Insomnia.json"> <strong>Insomnia</strong></a></p>
+<p><a target="_blank" href="https://elisios.com.br/sites/institutojef/Insomnia_doc.json"> <strong>Insomnia</strong></a></p>
 <p><a target="_blank" href="https://elisios.com.br/sites/institutojef/sistemas_curso.docx"> <strong>Docx - (word)</strong></a></p>
 <strong>Link para testes base64: </strong><a href="https://www.base64encode.net/file-to-base64" target="_blank">base64encode.net</a>
 <hr>
@@ -45,7 +45,7 @@
 <p>Caso necessário deixe cadastrado ao menos 2 usuários de cada perfil.</p>
 <p>Não é necessário criar um sistema de login e token, você pode simular o acesso com tokens específicos no header se for o caso. Só não esqueça de mencioná-los no envio da resposta para realização de testes.</p>
 <hr>
-<img src="https://elisios.com.br/sites/institutojef/draw.png">
+<img src="https://elisios.com.br/sites/institutojef/draws.png">
 <hr>
 <h3>Funcionalidade:</h3>
 <h4>Professores:</h4>
