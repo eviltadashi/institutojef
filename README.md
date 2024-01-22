@@ -88,6 +88,7 @@
   <li>Remover Vinculo [apenas professores]</li>
   <li>Listar Cursos do Aluno [professores e alunos]</li>
   <li>Listar Alunos que fazem parte do Curso [apenas professores]</li>
+  <li>Atualizar Visualização da Aula [professores e alunos]</li>
 </ul>
 <h4>AulasConteudo (adicionar Anexo para a Aula)</h4>
 <ul>
@@ -97,3 +98,5 @@
   <li>Listar Conteudos por ID [somente professor]</li>
 </ul>
 <hr>
+
+<h3><b>Swagger</b> : http://localhost:3001/api/ <small>[ não terminado ]</small></h3>

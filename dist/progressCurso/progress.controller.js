@@ -28,13 +28,10 @@ let ProgressController = class ProgressController {
     async atualizarConteudo(auth, id, dados) {
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
-        if (userType === 'professor') {
-            const entity = new progress_entity_1.ProgressEntity();
-            entity.visualizado = dados.visualizado;
-            const ret = await this.ProgressRepository.updateVisualizacao(id, dados);
-            return ret;
-        }
-        return { "mensagem": "Você não tem permissão para acessar essa api" };
+        const entity = new progress_entity_1.ProgressEntity();
+        entity.visualizado = dados.visualizado;
+        const ret = await this.ProgressRepository.updateVisualizacao(id, dados);
+        return ret;
     }
 };
 exports.ProgressController = ProgressController;

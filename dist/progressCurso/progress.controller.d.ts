@@ -11,7 +11,5 @@ export declare class ProgressController {
         id_curso: string;
         id_aula: string;
         visualizado: boolean;
-    } | {
-        mensagem: string;
     }>;
 }

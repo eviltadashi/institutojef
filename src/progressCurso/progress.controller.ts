@@ -19,12 +19,9 @@ export class ProgressController {
     async atualizarConteudo(@Headers('Authorization') auth : string, @Param('id') id:string, @Body() dados:ProgressDTO){
         const token = auth.split(' ');
         const userType = await this.jwtDecripty.decodeToken(token[1]);
-        if(userType==='professor'){
-            const entity = new ProgressEntity()
-            entity.visualizado = dados.visualizado;
-            const ret = await this.ProgressRepository.updateVisualizacao(id,dados)
-            return ret;
-        }
-        return {"mensagem":"Você não tem permissão para acessar essa api"} 
+        const entity = new ProgressEntity()
+        entity.visualizado = dados.visualizado;
+        const ret = await this.ProgressRepository.updateVisualizacao(id,dados)
+        return ret;
     }
 }
