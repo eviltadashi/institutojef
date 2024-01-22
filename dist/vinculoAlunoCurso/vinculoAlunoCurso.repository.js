@@ -94,6 +94,7 @@ let VinculoAlunoCursoRepository = class VinculoAlunoCursoRepository {
         for (const vinculo of vinculos) {
             const curso = await prisma.cursos.findUnique({ where: { id: vinculo.id_curso } });
             const aulas = await prisma.relation_curso_aulas.findMany({ where: { id_curso: vinculo.id_curso } });
+            curso['id_vinculo'] = vinculo.id;
             curso['status'] = vinculo.status;
             curso['aula'] = [];
             for (const aula of aulas) {

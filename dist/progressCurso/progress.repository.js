@@ -20,11 +20,26 @@ let ProgressRepository = class ProgressRepository {
             where: { id },
             data: dados
         });
-        const idCurso = ret.id_curso;
-        await prisma.relation_aluno_curso.updateMany({
-            data: { status: 'em_andamento' },
-            where: { id_curso: idCurso }
-        });
+        const aulasConcluidas = await prisma.progress_curso_aulas.findMany({ where: { id_curso: ret.id_curso } });
+        var concluido = true;
+        var nao_iniciado = false;
+        for (const aulaConcluida of aulasConcluidas) {
+            if (aulaConcluida.visualizado === false) {
+                concluido = false;
+            }
+        }
+        if (concluido === true) {
+            await prisma.relation_aluno_curso.updateMany({
+                data: { status: 'finalizado' },
+                where: { id_curso: ret.id_curso }
+            });
+        }
+        else {
+            await prisma.relation_aluno_curso.updateMany({
+                data: { status: 'em_andamento' },
+                where: { id_curso: ret.id_curso }
+            });
+        }
         return ret;
     }
 };
