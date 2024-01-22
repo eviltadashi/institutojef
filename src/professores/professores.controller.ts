@@ -3,15 +3,18 @@ import { professoresRepository } from "./professores.repository";
 import { CriarProfessorDTO } from "./dto/criarProfessorDTO";
 import { ProfessoresEntity } from "./professores.entity";
 import { AtualizarProfessorDTO } from "./dto/atualizarProfessorDTO";
-import { AuthGuard } from "@nestjs/passport";
 import * as bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
+import { AuthGuard } from "@nestjs/passport";
+import { JwtDecripty } from "src/decodeToken.service";
 
 @Controller('/professores')
 
 export class professoresController{
-    jwtDecripty: any;
-    constructor(private professorRepository: professoresRepository){}
+    constructor(
+        private professorRepository: professoresRepository,
+        private jwtDecripty : JwtDecripty,
+    ){}
 
     @Post()
     async createNewProfessor(@Body() dados: CriarProfessorDTO){

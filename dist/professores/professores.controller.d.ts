@@ -1,10 +1,11 @@
 import { professoresRepository } from "./professores.repository";
 import { CriarProfessorDTO } from "./dto/criarProfessorDTO";
 import { AtualizarProfessorDTO } from "./dto/atualizarProfessorDTO";
+import { JwtDecripty } from "src/decodeToken.service";
 export declare class professoresController {
     private professorRepository;
-    jwtDecripty: any;
-    constructor(professorRepository: professoresRepository);
+    private jwtDecripty;
+    constructor(professorRepository: professoresRepository, jwtDecripty: JwtDecripty);
     createNewProfessor(dados: CriarProfessorDTO): Promise<{
         id: string;
         nome: string;

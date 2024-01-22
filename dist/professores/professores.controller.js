@@ -18,12 +18,14 @@ const professores_repository_1 = require("./professores.repository");
 const criarProfessorDTO_1 = require("./dto/criarProfessorDTO");
 const professores_entity_1 = require("./professores.entity");
 const atualizarProfessorDTO_1 = require("./dto/atualizarProfessorDTO");
-const passport_1 = require("@nestjs/passport");
 const bcrypt = require("bcrypt");
 const uuid_1 = require("uuid");
+const passport_1 = require("@nestjs/passport");
+const decodeToken_service_1 = require("../decodeToken.service");
 let professoresController = class professoresController {
-    constructor(professorRepository) {
+    constructor(professorRepository, jwtDecripty) {
         this.professorRepository = professorRepository;
+        this.jwtDecripty = jwtDecripty;
     }
     async createNewProfessor(dados) {
         const entity = new professores_entity_1.ProfessoresEntity();
@@ -142,6 +144,7 @@ __decorate([
 ], professoresController.prototype, "deleteProfessor", null);
 exports.professoresController = professoresController = __decorate([
     (0, common_1.Controller)('/professores'),
-    __metadata("design:paramtypes", [professores_repository_1.professoresRepository])
+    __metadata("design:paramtypes", [professores_repository_1.professoresRepository,
+        decodeToken_service_1.JwtDecripty])
 ], professoresController);
 //# sourceMappingURL=professores.controller.js.map

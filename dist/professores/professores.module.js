@@ -12,14 +12,16 @@ const professores_controller_1 = require("./professores.controller");
 const professores_repository_1 = require("./professores.repository");
 const uniqueEmailProfessor_validator_1 = require("./validacao/uniqueEmailProfessor.validator");
 const passport_1 = require("@nestjs/passport");
+const jwt_1 = require("@nestjs/jwt");
+const decodeToken_service_1 = require("../decodeToken.service");
 let professoresModule = class professoresModule {
 };
 exports.professoresModule = professoresModule;
 exports.professoresModule = professoresModule = __decorate([
     (0, common_1.Module)({
-        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
+        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' }), jwt_1.JwtModule],
         controllers: [professores_controller_1.professoresController],
-        providers: [professores_repository_1.professoresRepository, uniqueEmailProfessor_validator_1.verifyUniqueEmailProfessor]
+        providers: [professores_repository_1.professoresRepository, uniqueEmailProfessor_validator_1.verifyUniqueEmailProfessor, decodeToken_service_1.JwtDecripty]
     })
 ], professoresModule);
 //# sourceMappingURL=professores.module.js.map
